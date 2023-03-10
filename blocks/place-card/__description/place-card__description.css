@@ -1,0 +1,8 @@
+.place-card__description{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0;
+    width: 100%;
+    min-height: 79px;
+}

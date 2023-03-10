@@ -1,0 +1,16 @@
+.copyright{
+    color:rgba(84, 84, 84, 1);
+    font-weight: 400;
+    line-height: 17px;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+
+}
+@media screen and (min-width: 768px) {
+    .copyright {
+        line-height: 22px;
+        font-size: 18px;
+        margin: ;
+    }
+  }

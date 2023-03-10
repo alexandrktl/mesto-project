@@ -1,0 +1,15 @@
+.place-card__desctiption-text{
+    color: black;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: left;
+    padding: 0;
+    margin: auto;
+    width: 200px;
+    max-width: 200px;
+    height: 26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

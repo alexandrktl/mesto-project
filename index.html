@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="body">
+    <div class="page">
+
+      <div class="edit-form edit-form_opened">       <!--edit-form_opened  -->
+            <div class="edit-form__overlay"></div>
+            <button class="edit-form__close-button"></button>
+            <div class="edit-form__container">
+                <p class="edit-form__container-title-text">Редактировать профиль</p>
+                <input type="text" id="person-name" name="person-name" placeholder="Джони Синс"
+                    class="edit-form__container-input-text-modal-window  input-text-modal-window ">
+
+                <hr class="edit-form__container-input-underline">
+                <input type="text" id="description-of-person" name="description-of-person" placeholder="Исследователь пещер"
+                    class="edit-form__container-input-text-modal-window  input-text-modal-window ">
+                <hr class="edit-form__container-input-underline">
+                <button class="edit-form__save-button">Сохранить</button>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <header class="header">
+            <img class="header__logo" src="./images/Mesto-logo.svg" alt="логотип-место">
+            <hr class="header__line">
+        </header>
+        <main class="main">
+            <section class="profile">
+                <div class="profile__avatar">
+                </div>
+                <div class="profile__info">
+                    <h1 class="profile__name-text">Джони Синс</h1>
+                    <p class="profile__description-text">Исследователь пещер</p>
+                    <button class="profile__edit-button"></button>
+                </div>
+                <button class="profile__add-button"></button>
+            </section>
+
+            <section class="places-grid">
+                <div class="place-card">
+                    <img class="place-card__image" alt="california-cave" src="./images/california">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Калифорния</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img class="place-card__image" alt="Alabama-cave" src="./images/992x496.webp">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Алабама</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img class="place-card__image" alt="Iova-cave" src="./images/айова.jpg">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Айова</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img class="place-card__image" alt="Jersey-cave" src="./images/Jersey.webp">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Джерси</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img class="place-card__image" alt="Oklahoma-cave" src="./images/oklahoma.jpg">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Оклахома</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img class="place-card__image" alt="Aidaho-cave" src="./images/Aidaho.jpg">
+                    <div class="place-card__description">
+                        <p class="place-card__desctiption-text">Айдахо</p>
+                        <button class="place-card__like-button"></button>
+                    </div>
+                </div>
+
+
+
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="copyright">© 2020 Mesto Russia
+
+            </div>
+        </footer>
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

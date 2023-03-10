@@ -1,0 +1,21 @@
+.edit-form__close-button {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../images/Close\ Icon.svg);
+  padding: 0;
+  border: none;
+  background-color: black;
+  z-index: 3;
+  margin: 87px 0 0 auto;
+}
+
+.edit-form__close-button:hover {
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 768px) {
+  .edit-form__close-button {
+    margin-top: 155px;
+  }
+}

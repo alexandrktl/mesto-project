@@ -1,0 +1,15 @@
+.edit-form__container-input-text-modal-window {
+  margin: 30px auto 0 auto;
+
+}
+
+
+.edit-form__container-input-text-modal-window:first-of-type{
+  margin-top: 75px;
+}
+@media screen and (min-width: 768px) {
+  .edit-form__container-input-text-modal-window:first-of-type {
+    margin-top: 47px;
+    
+  }
+}
