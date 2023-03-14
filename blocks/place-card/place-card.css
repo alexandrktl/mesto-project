@@ -1,12 +1,9 @@
 .place-card{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border-radius: 10px;
     background-color: white;
     width: 282px;
-    min-height: 361px;
-    height: fit-content;
     margin: 0 auto;
     padding: 0;
     overflow: hidden;

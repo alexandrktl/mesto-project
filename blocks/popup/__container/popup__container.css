@@ -1,21 +1,19 @@
-.edit-form__container {
+.popup__container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-content: space-evenly;
   width: 282px;
-  height: 322px;
   background-color: white;
   z-index: 3;
   border-radius: 10px;
-  margin: 16px auto auto auto;
   box-sizing: border-box;
 }
 
 
 @media screen and (min-width: 768px) {
-  .edit-form__container {
-    margin: 8px 28px auto auto;
+  .popup__container {
+   
     width: 430px;
-    height: 330px;
   }
 }

@@ -5,10 +5,9 @@
     line-height: 29px;
     text-align: left;
     padding: 0;
-    margin: auto;
+    margin: 0;
     width: 200px;
     max-width: 200px;
-    height: 26px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

@@ -1,0 +1,67 @@
+.popup__container-title-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-weight: 900;
+  text-align: center;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 25px auto 0 auto;
+  text-align: left;
+  width: 238px;
+}
+
+.popup__container-title-text::before {
+  content: '';
+  display: block;
+  height: 1px;
+  /* Высота линии */
+  background: rgba(0, 0, 0, 0.2);
+  width: 238px;
+  top: 124px;
+  position: absolute;
+}
+
+.popup__container-title-text::after {
+  content: '';
+  display: block;
+  height: 1px;
+  /* Высота линии */
+  background: rgba(0, 0, 0, 0.2);
+  width: 238px;
+  top: 181px;
+  position: absolute;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__container-title-text {
+    margin: 34px auto 0 auto;
+    font-size: 24px;
+    line-height: 29px;
+    width: 330px;
+    height: 23px;
+
+  }
+
+  .popup__container-title-text::before {
+    width: 358px;
+    top: 104px;
+    left: -14px;
+  }
+
+  .popup__container-title-text::after {
+    top: 161px;
+    width: 358px;
+    left: -14px;
+  }
+
+
+
+
+
+
+
+
+
+}

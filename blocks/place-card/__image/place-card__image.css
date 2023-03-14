@@ -3,5 +3,5 @@
     width: 282px;
     height: 282px;
     margin: 0;
-    
+    object-fit: cover;
 }
