@@ -1,6 +1,4 @@
 .profile__name-text {
-  display: flex;
-  flex-direction: row;
   padding: 0;
   margin: 0;
   font-size: 27px;
@@ -12,9 +10,9 @@
   text-align: center;
   justify-content: center;
   max-width: 240px;
-  max-height: 70px;
+  text-overflow: ellipsis;
   overflow: hidden;
-
+  white-space: nowrap;
 
 }
 
@@ -25,6 +23,5 @@
     text-align: left;
     justify-content: left;
     max-width: 470px;
-    max-height: 96px;
   }
 }
