@@ -47,13 +47,11 @@
   .popup__container-title-text::before {
     width: 358px;
     top: 104px;
-    left: -14px;
   }
 
   .popup__container-title-text::after {
     top: 161px;
     width: 358px;
-    left: -14px;
   }
 
 
