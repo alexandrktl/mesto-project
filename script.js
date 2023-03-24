@@ -11,6 +11,7 @@ const addPhotoPopup = document.querySelector('.popup-new-place');
 const popupImagecloseButton = addPhotoPopup.querySelector('.popup-new-place__close-button');// закрыть попап добавления карточки
 const imageEditButton = document.querySelector('.profile__add-button');//кнопка открытия попапа добавления карточки
 const addNewCardButton = document.querySelector('.popup-new-place__add-button');//кнопка одобавления карточки в попапе
+const cardsGrid = document.querySelector('.places-grid');// контейнер для карточек
 
 
 
@@ -34,14 +35,6 @@ function openAddPhotoPopup() {
 function closeAddPhotoPopup() {
     addPhotoPopup.classList.toggle('popup_opened');
 }
-
-
-
-
-
-
-
-
 
 //перенос текста из профиля в попап
 function transferTextFromHeader() {
@@ -70,10 +63,31 @@ imageEditButton.addEventListener('click', openAddPhotoPopup);
 //кнопка сохранить в попапе
 popupSaveButton.addEventListener('click', transferTextFromPopup);
 //кнопка лайк
-likeButtton.addEventListener('click', like);
+//likeButtton.addEventListener('click', like); // Сырое - не работает!
 
 
+//функция добавления карточки
+function addCard(cardName, imageUrl) {
+    const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
+    const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки
 
+    card.querySelector('.place-card__desctiption-text').textContent = cardName;
+    card.querySelector('.place-card__image').textContent = imageUrl;
 
+    cardsGrid.prepend(card); //вставили карточк в начало
 
+}
+
+addNewCardButton.addEventListener('submit', function () {
+    
+    const cardName = document.querySelector('.popup-new-place_text_place-name');
+    const imageUrl = document.querySelector('.popup__input popup-new-place_text_place-img-url');
+
+    addCard(cardName.value, imageUrl.value);
+
+    cardName.value = '';
+    imageUrl.value = '';
+    closeAddPhotoPopup();
+    
+});
 

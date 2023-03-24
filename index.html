@@ -28,50 +28,7 @@
 
             <section class="places-grid" aria-label="places-cards-grid">
 
-                <article class="place-card">
-                    <img class="place-card__image" alt="california-cave" src="./images/california">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Калифорния</h2>
-                        <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
-                    </div>
-                </article>
-
-                <article class="place-card">
-                    <img class="place-card__image" alt="Alabama-cave" src="./images/992x496.webp">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Алабама</h2>
-                        <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
-                    </div>
-                </article>
-                <article class="place-card">
-                    <img class="place-card__image" alt="Iova-cave" src="./images/айова.jpg">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Айова</h2>
-                        <button aria-label="Like-button" type="button"
-                            class="place-card__like-button"></button>
-                    </div>
-                </article>
-                <article class="place-card">
-                    <img class="place-card__image" alt="Jersey-cave" src="./images/Jersey.webp">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Джерси</h2>
-                        <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
-                    </div>
-                </article>
-                <article class="place-card">
-                    <img class="place-card__image" alt="Oklahoma-cave" src="./images/oklahoma.jpg">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Оклахома</h2>
-                        <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
-                    </div>
-                </article>
-                <article class="place-card">
-                    <img class="place-card__image" alt="Aidaho-cave" src="./images/Aidaho.jpg">
-                    <div class="place-card__description">
-                        <h2 class="place-card__desctiption-text">Айдахо</h2>
-                        <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
-                    </div>
-                </article>
+                <!--тут будут наши карточки-->
             </section>
         </main>
         <footer class="footer">
@@ -79,10 +36,10 @@
 
             </p>
         </footer>
- 
+
         <div class="popup"> <!--popup_opened  -->
             <div class="popup__container">
-                <button aria-label="Закрыть" type="button" class="popup__close-button" ></button>
+                <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
                 <h2 class="popup__container-title-text">Редактировать профиль</h2>
                 <form name="popup__profile-form" class="popup__profile-form">
                     <input type="text" id="person-name" name="person-name" placeholder="Введите имя"
@@ -107,10 +64,21 @@
                 </form>
             </div>
         </div>
-
     </div>
+
+
+    <template id="card-template">
+        <article class="place-card">
+            <img class="place-card__image">
+            <div class="place-card__description">
+                <h2 class="place-card__desctiption-text"></h2>
+                <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
+            </div>
+        </article>
+    </template>
+
     <script src="./script.js"></script>
-    
+
 </body>
 
 </html>
