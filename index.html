@@ -27,6 +27,7 @@
             </section>
 
             <section class="places-grid" aria-label="places-cards-grid">
+
                 <article class="place-card">
                     <img class="place-card__image" alt="california-cave" src="./images/california">
                     <div class="place-card__description">
@@ -34,6 +35,7 @@
                         <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
                     </div>
                 </article>
+
                 <article class="place-card">
                     <img class="place-card__image" alt="Alabama-cave" src="./images/992x496.webp">
                     <div class="place-card__description">
@@ -77,10 +79,10 @@
 
             </p>
         </footer>
-
-        <div class="popup "> <!--popup_opened  -->
+ 
+        <div class="popup"> <!--popup_opened  -->
             <div class="popup__container">
-                <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
+                <button aria-label="Закрыть" type="button" class="popup__close-button" ></button>
                 <h2 class="popup__container-title-text">Редактировать профиль</h2>
                 <form name="popup__profile-form" class="popup__profile-form">
                     <input type="text" id="person-name" name="person-name" placeholder="Введите имя"
@@ -89,13 +91,26 @@
                         placeholder="Введите описание" class=" popup__input popup__input_text_description-of-person">
                     <button aria-label="Сохранить" type="submit" class="popup__save-button">Сохранить</button>
                 </form>
+            </div>
+        </div>
 
-
+        <div class="popup-new-place"> <!--popup_opened  -->
+            <div class="popup__container">
+                <button aria-label="Закрыть" type="button" class="popup-new-place__close-button"></button>
+                <h2 class="popup__container-title-text">Новое место</h2>
+                <form name="popup__profile-form" class="popup__profile-form">
+                    <input type="text" id="place-name" name="popup-new-place_text_place-name" placeholder="Название"
+                        class="popup__input popup-new-place_text_place-name">
+                    <input type="text" id="place-img-url" name="popup-new-place_text_place-img-url"
+                        placeholder="Ссылка на картинку" class="popup__input popup-new-place_text_place-img-url">
+                    <button aria-label="Создать" type="submit" class="popup-new-place__add-button">Создать</button>
+                </form>
             </div>
         </div>
 
     </div>
     <script src="./script.js"></script>
+    
 </body>
 
 </html>

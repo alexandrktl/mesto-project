@@ -1,0 +1,33 @@
+.popup-new-place__add-button {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 58px auto 25px auto;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  align-items: center;
+  border-radius: 2px;
+  background-color: black;
+  color: white;
+  width: 238px;
+  height: 46px;
+}
+
+@media screen and (min-width: 768px) {
+  .popup-new-place__add-button {
+    margin: 61px auto 37px auto;
+    font-size: 18px;
+    line-height: 22px;
+    width: 358px;
+    height: 50px;
+  }
+}
+
+.popup-new-place__add-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

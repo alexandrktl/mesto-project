@@ -23,6 +23,7 @@
 @import url(../blocks/place-card/__image/place-card__image.css);
 @import url(../blocks/place-card/__desctiption-text/place-card__desctiption-text.css);
 @import url(../blocks/place-card/__like-button/place-card__like-button.css);
+@import url(../blocks/place-card/__like-button/_active/place-card__like-button_active.css);
 
 @import url(../blocks/popup/__profile-form/popup__profile-form.css);
 @import url(../blocks/popup/popup.css);
@@ -34,6 +35,26 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/_text/popup__input_text_description-of-person.css);
 @import url(../blocks/popup/_text/popup__input_text_person-name.css);
+
+
+@import url(../blocks/popup-new-place/_text/popup-new-place_text_place-img-url.css);
+@import url(../blocks/popup-new-place/_text/popup-new-place_text_place-name.css);
+@import url(../blocks/popup-new-place/__add-button/popup-new-place__add-button.css);
+@import url(../blocks/popup-new-place/popup-new-place.css);
+@import url(../blocks/popup-new-place/__close-button/popup-new-place__close-button.css);
+@import url(../blocks/popup-new-place);
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* *{border: 0.2px solid red;
 }  */
