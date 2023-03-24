@@ -26,6 +26,7 @@ function closeEditProfilePopup() {
 //открыть попап
 function openPopup() {
     popup.classList.toggle('popup_opened');
+    transferTextFromHeader();
 }
 //открыть попап добавления  картинки
 function openAddPhotoPopup() {
@@ -34,6 +35,8 @@ function openAddPhotoPopup() {
 //закрыть попап добавления картинки
 function closeAddPhotoPopup() {
     addPhotoPopup.classList.toggle('popup_opened');
+    document.querySelector('.popup-new-place_text_place-name').value = ''; // очищаем поле ввода
+    imageUrl = document.querySelector('.popup-new-place_text_place-img-url').value = ''; // очищаем поле ввода
 }
 
 //перенос текста из профиля в попап
@@ -41,14 +44,15 @@ function transferTextFromHeader() {
     insertedName.value = (profileName.textContent)
     insertedDescription.value = (profileDescriptionText.textContent)
 }
-transferTextFromHeader();
+
 
 //перенос текста из попапа в профиль
-function transferTextFromPopup(event) {
+function transferTextFromPopup(evt) {
+    evt.preventDefault()
     profileName.textContent = insertedName.value
     profileDescriptionText.textContent = insertedDescription.value
     closeEditProfilePopup()
-    event.preventDefault()
+
 }
 
 
@@ -67,27 +71,22 @@ popupSaveButton.addEventListener('click', transferTextFromPopup);
 
 
 //функция добавления карточки
-function addCard(cardName, imageUrl) {
+function addCard(nameFromPopup, urlFromPopup) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки
-
-    card.querySelector('.place-card__desctiption-text').textContent = cardName;
-    card.querySelector('.place-card__image').textContent = imageUrl;
-
+    card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;
+    card.querySelector('.place-card__image').src = urlFromPopup; // тут меняем src у картинки
     cardsGrid.prepend(card); //вставили карточк в начало
-
+    closeAddPhotoPopup();
 }
 
-addNewCardButton.addEventListener('submit', function () {
-    
-    const cardName = document.querySelector('.popup-new-place_text_place-name');
-    const imageUrl = document.querySelector('.popup__input popup-new-place_text_place-img-url');
+document.querySelector('.popup-new-place__profile-form').addEventListener('submit', function (evt) { // вешаем на форму, потомучто ХЗ, сабмиту только так
+    evt.preventDefault();
+    const cardName = document.querySelector('.popup-new-place_text_place-name').value;
+    const imageUrl = document.querySelector('.popup-new-place_text_place-img-url').value;
+    addCard(cardName, imageUrl);
+}
+)
 
-    addCard(cardName.value, imageUrl.value);
 
-    cardName.value = '';
-    imageUrl.value = '';
-    closeAddPhotoPopup();
-    
-});
 
