@@ -24,6 +24,7 @@
 @import url(../blocks/place-card/__desctiption-text/place-card__desctiption-text.css);
 @import url(../blocks/place-card/__like-button/place-card__like-button.css);
 @import url(../blocks/place-card/__like-button/_active/place-card__like-button_active.css);
+@import url(../blocks/place-card/__trash-button/place-card__trash-button.css);
 
 @import url(../blocks/popup/__profile-form/popup__profile-form.css);
 @import url(../blocks/popup/popup.css);
@@ -43,7 +44,18 @@
 @import url(../blocks/popup-new-place/popup-new-place.css);
 @import url(../blocks/popup-new-place/__close-button/popup-new-place__close-button.css);
 @import url(../blocks/popup-new-place/__profile-form/popup-new-place__profile-form.css);
-@import url(../blocks/popup-new-place);
+
+
+
+
+@import url(../blocks/popup-big-image/popup-big-image.css);
+@import url(../blocks/popup-big-image/__close-button/popup-big-image__close-button.css);
+@import url(../blocks/popup-big-image/__text/popup-big-image__text.css);
+@import url(../blocks/popup-big-image/__main-photo/popup-big-image__main-image.css);
+@import url(../blocks/popup-big-image/_opened/popup-big-image_opened.css);
+@import url(../blocks/popup-big-image/__container/popup-big-image__container.css);
+@import url(../blocks/);
+@import url(../blocks/);
 
 
 

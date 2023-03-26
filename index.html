@@ -64,15 +64,31 @@
                 </form>
             </div>
         </div>
+
+        <div class="popup-big-image popup-big-image_opened"> <!--popup-big-image_opened  -->
+            <div class="popup-big-image__container">
+                <button aria-label="Закрыть" type="button" class="popup-big-image__close-button"></button>
+                <img class="popup-big-image__main-image" src="./images/oklahoma.jpg" >
+                <p class="popup-big-image__text">New-Orlean</p>
+            </div>
+
+
+        </div>
+
+
     </div>
+
+
+
 
 
     <template id="card-template">
         <article class="place-card">
             <img class="place-card__image">
+            <button aria-label="trash-button " type="button" class="place-card__trash-button"></button>
             <div class="place-card__description">
                 <h2 class="place-card__desctiption-text"></h2>
-                <button aria-label="Like-button" type="button" class="place-card__like-button"></button>
+                <button aria-label="Like-button " type="button" class="place-card__like-button"></button>
             </div>
         </article>
     </template>

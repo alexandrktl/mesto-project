@@ -66,8 +66,8 @@ profileEditButton.addEventListener('click', openPopup);
 imageEditButton.addEventListener('click', openAddPhotoPopup);
 //кнопка сохранить в попапе
 popupSaveButton.addEventListener('click', transferTextFromPopup);
-//кнопка лайк
-//likeButtton.addEventListener('click', like); // Сырое - не работает!
+
+
 
 
 //функция добавления карточки
@@ -76,6 +76,19 @@ function addCard(nameFromPopup, urlFromPopup) {
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;
     card.querySelector('.place-card__image').src = urlFromPopup; // тут меняем src у картинки
+
+    //кнопка лайк
+    card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('place-card__like-button_active');
+    })
+
+    //кнопка удаления карточки
+    card.querySelector('.place-card__trash-button').addEventListener('click', function (evt) {
+        const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
+        const parentElement = eventTarget.parentElement // находим родительский элемент
+        parentElement.remove();                         //удаляем родителя 
+    })
+
     cardsGrid.prepend(card); //вставили карточк в начало
     closeAddPhotoPopup();
 }
@@ -86,7 +99,6 @@ document.querySelector('.popup-new-place__profile-form').addEventListener('submi
     const imageUrl = document.querySelector('.popup-new-place_text_place-img-url').value;
     addCard(cardName, imageUrl);
 }
-)
-
+);
 
 
