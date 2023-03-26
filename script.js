@@ -8,12 +8,12 @@ const insertedName = document.querySelector('.popup__input_text_person-name');
 const insertedDescription = document.querySelector('.popup__input_text_description-of-person');
 const likeButtton = document.querySelector('.place-card__like-button'); //**************************************** */
 const addPhotoPopup = document.querySelector('.popup-new-place');
-const popupImagecloseButton = addPhotoPopup.querySelector('.popup-new-place__close-button');// закрыть попап добавления карточки
+const popupImagecloseButton = addPhotoPopup.querySelector('.popup-new-place__close-button');// кнопка закрытия попапа добавления карточки
 const imageEditButton = document.querySelector('.profile__add-button');//кнопка открытия попапа добавления карточки
 const addNewCardButton = document.querySelector('.popup-new-place__add-button');//кнопка одобавления карточки в попапе
 const cardsGrid = document.querySelector('.places-grid');// контейнер для карточек
-
-
+const bigImgPopup = document.querySelector('.popup-big-image');//попап большой картинки
+const bigImgPopupCloseButton = bigImgPopup.querySelector('.popup-big-image__close-button'); // кнопка закрытия попапа большой картинки
 
 
 
@@ -54,12 +54,21 @@ function transferTextFromPopup(evt) {
     closeEditProfilePopup()
 
 }
+//закрыть попап большой картинки
+function closeBigImgPopup() {
+     bigImgPopup.classList.toggle('popup_opened');
 
+    // setTimeout(function(){
+    //     bigImgPopup.classList.toggle('popup-big-image_opened');
+    //   }, 500);
+}
 
 //кнопка закрыть попап
 popupCloseButton.addEventListener('click', closeEditProfilePopup);
 //кнопка закрыть попап добавления картинки
 popupImagecloseButton.addEventListener('click', closeAddPhotoPopup);
+//кнопка закрыть попап большой картинки
+bigImgPopupCloseButton.addEventListener('click', closeBigImgPopup);
 //кнопка открыть попап 
 profileEditButton.addEventListener('click', openPopup);
 //кнопка открыть попап добавления картинки
@@ -88,7 +97,15 @@ function addCard(nameFromPopup, urlFromPopup) {
         const parentElement = eventTarget.parentElement // находим родительский элемент
         parentElement.remove();                         //удаляем родителя 
     })
+    //нажатие на рактинку-открытие попапа БОЛЬШОЙ картинки
+    card.querySelector('.place-card__image').addEventListener('click', function (evt) {
+        const imgUrl = evt.target.src; // нашли ссылку на именно эту картинку
+        document.querySelector('.popup-big-image').classList.toggle('popup_opened');//нашли и переключили класс для активации попапа
+        const mainImg = document.querySelector('.popup-big-image__main-image');//нашли большую картинку
+        mainImg.src = imgUrl;//добавили ей ссылку для отображения
+        document.querySelector('.popup-big-image__text').textContent = card.querySelector('.place-card__desctiption-text').textContent;//нашли текст у попапа и заменили его на текст из карточки
 
+    })
     cardsGrid.prepend(card); //вставили карточк в начало
     closeAddPhotoPopup();
 }
