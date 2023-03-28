@@ -20,8 +20,21 @@ const bigImgPopupCloseButton = bigImgPopup.querySelector('.popup-big-image__clos
 
 //закрыть попап
 function closeEditProfilePopup() {
+    popup.classList.add('popup_transition');
     popup.classList.toggle('popup_opened');
     transferTextFromHeader();
+}
+//закрыть попап большой картинки
+function closeBigImgPopup() {
+    bigImgPopup.classList.add('popup_transition');
+    bigImgPopup.classList.toggle('popup_opened');
+}
+//закрыть попап добавления картинки
+function closeAddPhotoPopup() {
+    addPhotoPopup.classList.add('popup_transition');
+    addPhotoPopup.classList.toggle('popup_opened');
+    document.querySelector('.popup-new-place_text_place-name').value = ''; // очищаем поле ввода
+    imageUrl = document.querySelector('.popup-new-place_text_place-img-url').value = ''; // очищаем поле ввода
 }
 //открыть попап
 function openPopup() {
@@ -32,12 +45,7 @@ function openPopup() {
 function openAddPhotoPopup() {
     addPhotoPopup.classList.toggle('popup_opened');
 }
-//закрыть попап добавления картинки
-function closeAddPhotoPopup() {
-    addPhotoPopup.classList.toggle('popup_opened');
-    document.querySelector('.popup-new-place_text_place-name').value = ''; // очищаем поле ввода
-    imageUrl = document.querySelector('.popup-new-place_text_place-img-url').value = ''; // очищаем поле ввода
-}
+
 
 //перенос текста из профиля в попап
 function transferTextFromHeader() {
@@ -54,14 +62,7 @@ function transferTextFromPopup(evt) {
     closeEditProfilePopup()
 
 }
-//закрыть попап большой картинки
-function closeBigImgPopup() {
-     bigImgPopup.classList.toggle('popup_opened');
 
-    // setTimeout(function(){
-    //     bigImgPopup.classList.toggle('popup-big-image_opened');
-    //   }, 500);
-}
 
 //кнопка закрыть попап
 popupCloseButton.addEventListener('click', closeEditProfilePopup);
@@ -97,7 +98,7 @@ function addCard(nameFromPopup, urlFromPopup) {
         const parentElement = eventTarget.parentElement // находим родительский элемент
         parentElement.remove();                         //удаляем родителя 
     })
-    //нажатие на рактинку-открытие попапа БОЛЬШОЙ картинки
+    //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
     card.querySelector('.place-card__image').addEventListener('click', function (evt) {
         const imgUrl = evt.target.src; // нашли ссылку на именно эту картинку
         document.querySelector('.popup-big-image').classList.toggle('popup_opened');//нашли и переключили класс для активации попапа
@@ -117,5 +118,40 @@ document.querySelector('.popup-new-place__profile-form').addEventListener('submi
     addCard(cardName, imageUrl);
 }
 );
+
+const initialCards = [
+    {
+      name: 'Mercedes',
+      link: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
+    },
+    {
+      name: 'Audi',
+      link: 'https://images.unsplash.com/photo-1541348263662-e068662d82af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    },
+    {
+      name: 'Ferrari ',
+      link: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
+    },
+    {
+      name: 'BMW',
+      link: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
+    },
+    {
+      name: 'Bugatti',
+      link: 'https://images.unsplash.com/photo-1584902645120-f86567d892b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80'
+    },
+    {
+      name: 'Walksvagen',
+      link: 'https://images.unsplash.com/photo-1616421275384-a4871cf679d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    }
+  ]; 
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    for (let i=initialCards.length-1;i>=0;i--){
+        addCard(initialCards[i].name , initialCards[i].link);
+    }
+});
+
 
 

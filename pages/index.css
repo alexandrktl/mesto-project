@@ -28,6 +28,7 @@
 
 @import url(../blocks/popup/__profile-form/popup__profile-form.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_transition/popup_transition.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__container-title-text/popup__container-title-text.css);
@@ -70,5 +71,5 @@
 
 
 
-/* *{border: 0.2px solid red;
-}  */
+ /* *{border: 0.2px solid red;
+}   */
