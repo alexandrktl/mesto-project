@@ -23,7 +23,7 @@
                     <p class="profile__description-text">Коллекционер автомобилей</p>
                     <button aria-label="Изменить" type="button" class="profile__edit-button"></button>
                 </div>
-                <button aria-label="Добавить карточку" type="button" class="profile__add-button"></button>
+                <button aria-label="Добавить карточку" type="button" class="profile__add-card-button"></button>
             </section>
 
             <section class="places-grid" aria-label="places-cards-grid">
@@ -37,7 +37,7 @@
             </p>
         </footer>
 
-        <div class="popup"> <!--popup_opened  -->
+        <div class="popup popup_type-edit-profile "> <!--popup_opened  -->
             <div class="popup__container">
                 <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
                 <h2 class="popup__container-title-text">Редактировать профиль</h2>
@@ -51,33 +51,29 @@
             </div>
         </div>
 
-        <div class="popup-big-image"> <!--popup-big-image_opened  -->
-            <div class="popup-big-image__container">
-                <button aria-label="Закрыть" type="button" class="popup-big-image__close-button"></button>
-                <img class="popup-big-image__main-image" src="./images/empty" alt="popup-big-image__main-image">
-                <p class="popup-big-image__text"></p>
+        <div class="popup popup_type-big-image"> <!--popup_opened  -->
+            <div class="popup__container_big-image">
+                <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
+                <img class="popup__main-photo" src="./images/empty" alt="popup__main-photo">
+                <p class="popup_text-big-image"></p>
             </div>
         </div>
 
 
 
-        <div class="popup-new-place "> <!--popup_opened  -->
+        <div class="popup popup_type-new-place "> <!--popup_opened     когда все допишу- изменить название на card-->
             <div class="popup__container">
-                <button aria-label="Закрыть" type="button" class="popup-new-place__close-button"></button>
+                <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
                 <h2 class="popup__container-title-text">Новое место</h2>
-                <form name="popup-new-place__profile-form" class='popup-new-place__profile-form'>
-                    <input type="text" id="place-name" name="popup-new-place_text_place-name" placeholder="Название"
-                        class="popup__input popup-new-place_text_place-name">
-                    <input type="text" id="place-img-url" name="popup-new-place_text_place-img-url"
-                        placeholder="Ссылка на картинку" class="popup__input popup-new-place_text_place-img-url">
-                    <button aria-label="Создать" type="submit" class="popup-new-place__add-button">Создать</button>
+                <form name="popup__profile-form" class='popup__profile-form'>
+                    <input type="text" id="place-name" name="popup_text-new-place-img-name" placeholder="Название"
+                        class="popup__input popup_text-new-place-img-name">
+                    <input type="text" id="place-img-url" name="popup_text-new-place-img-url"
+                        placeholder="Ссылка на картинку" class="popup__input popup_text-new-place-img-url">
+                    <button aria-label="Создать" type="submit" class="popup__add-button">Создать</button>
                 </form>
             </div>
         </div>
-
-        
-
-
     </div>
 
 
@@ -86,7 +82,7 @@
 
     <template id="card-template">
         <article class="place-card">
-            <img class="place-card__image">
+            <img class="place-card__image" alt="place-card__image">
             <button aria-label="trash-button " type="button" class="place-card__trash-button"></button>
             <div class="place-card__description">
                 <h2 class="place-card__desctiption-text"></h2>
@@ -94,6 +90,7 @@
             </div>
         </article>
     </template>
+
 
     <script src="./script.js"></script>
 

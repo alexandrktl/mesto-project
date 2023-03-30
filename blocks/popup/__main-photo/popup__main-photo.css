@@ -1,4 +1,4 @@
-.popup-big-image__main-image {
+.popup__main-photo{
   position: relative;
   display: flex;
   max-width: 75vw;
