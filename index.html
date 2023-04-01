@@ -41,12 +41,12 @@
             <div class="popup__container">
                 <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
                 <h2 class="popup__container-title-text">Редактировать профиль</h2>
-                <form name="popup__profile-form" class="popup__profile-form">
+                <form name="popup__profile-form" class="popup__profile-form" id="editProfileForm">
                     <input type="text" id="person-name" name="person-name" placeholder="Введите имя"
                         class=" popup__input popup__input_text_person-name">
                     <input type="text" id="description-of-person" name="description-of-person"
                         placeholder="Введите описание" class=" popup__input popup__input_text_description-of-person">
-                    <button aria-label="Сохранить" type="submit" class="popup__save-button">Сохранить</button>
+                    <button  aria-label="Сохранить" type="submit" class="popup__save-button">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="popup__container">
                 <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
                 <h2 class="popup__container-title-text">Новое место</h2>
-                <form name="popup__profile-form" class='popup__profile-form'>
+                <form name="popup__profile-form" class='popup__profile-form' id="addCardForm">
                     <input type="text" id="place-name" name="popup_text-new-place-img-name" placeholder="Название"
                         class="popup__input popup_text-new-place-img-name">
                     <input type="text" id="place-img-url" name="popup_text-new-place-img-url"

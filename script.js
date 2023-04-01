@@ -7,12 +7,15 @@ const editProfilePopup = document.querySelector('.popup_type-edit-profile');//п
 const popupProfileForms = document.querySelectorAll('.popup__profile-form');//формы-часть попапа для навешивания сабмита
 
 const cardsGrid = document.querySelector('.places-grid');// контейнер для карточек
+const editProfileForm = document.querySelector('#editProfileForm'); //форма у попапа редактирования профиля
+const addCardForm = document.querySelector('#addCardForm'); //форма у попапа добавления картинки
 
 const nameOfImgText = document.querySelector('.popup_text-new-place-img-name');
 const urlOfCardText = document.querySelector('.popup_text-new-place-img-url');
 
 const profileEditButton = document.querySelector('.profile__edit-button');//кнопка редактирования профиля
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');// кнопкa закрыть попап 
+const popupCloseButtons = document.querySelectorAll('.popup__close-button');//все кнопки закрыть попап 
+
 const popupSaveButton = document.querySelector('.popup__save-button')//кнопка сохранить в попапе редактирования пофиля
 const addCardButton = document.querySelector('.profile__add-card-button');//кнопка открытия попапа добавления карточки
 const addNewCardButton = document.querySelector('.popup__add-button');//кнопка одобавления карточки в попапе
@@ -77,7 +80,6 @@ function openPopup(whatToOpen) {
     whatToOpen.classList.toggle('popup_opened');
 }
 
-
 //кнопка закрыть любой попап
 // находим все крестики проекта по универсальному селектору
 popupCloseButtons.forEach((button) => {
@@ -87,87 +89,55 @@ popupCloseButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
+//кнопка сохранить в попапе редактирования профиля 
 //отменили обновление страницы для всех сабмитов и очистили поля после использования                  
-popupProfileForms.forEach(function (item) {
-    item.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-        evt.target.reset();
-    });
+editProfileForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    transferTextFromPopup();
+    evt.target.reset();
 });
 
-//кнопка сохранить в попапе редактирования профиля                   
-popupSaveButton.addEventListener('click', transferTextFromPopup);
 
-
-//кнопка добавить новую карточку в попаде добавления нов карточки          
-addNewCardButton.addEventListener('click', function () {
+//кнопка добавить новую карточку в попаде добавления нов карточки 
+//отменили обновление страницы для всех сабмитов и очистили поля после использования                  
+addCardForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
     const cardName = nameOfImgText.value;
     const imageUrl = urlOfCardText.value;
     addCard(cardName, imageUrl);
-}
-);
-
+    evt.target.reset();
+});
 
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {
     openPopup(addPhotoPopup);
 });
 
-
-
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup), transferTextFromHeader();
-}
-);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //console.log(cardsGrid)
+});
 
 //функция добавления карточки
 function addCard(nameFromPopup, urlFromPopup) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
-    const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки
-    card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;
+    const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
+    card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
     card.querySelector('.place-card__image').src = urlFromPopup; // тут меняем src у картинки
 
-    //кнопка лайк
+    //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('place-card__like-button_active');
-    })
+    });
 
     //кнопка удаления карточки
     card.querySelector('.place-card__trash-button').addEventListener('click', function (evt) {
         const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
         const parentElement = eventTarget.parentElement // находим родительский элемент
         parentElement.remove();                         //удаляем родителя 
-    })
+    });
+
     //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
     card.querySelector('.place-card__image').addEventListener('click', function (evt) {
         const imgUrl = evt.target.src; // нашли ссылку на именно эту картинку
@@ -176,47 +146,16 @@ function addCard(nameFromPopup, urlFromPopup) {
         mainImg.src = imgUrl;//добавили ей ссылку для отображения
         document.querySelector('.popup_text-big-image').textContent = card.querySelector('.place-card__desctiption-text').textContent;//нашли текст у попапа и заменили его на текст из карточки
 
-    })
+    });
+
     cardsGrid.prepend(card); //вставили карточкy в начало
     closePopup(addPhotoPopup);
+    return card;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = initialCards.length - 1; i >= 0; i--) {
-        addCard(initialCards[i].name, initialCards[i].link);
+        const asdasd = addCard(initialCards[i].name, initialCards[i].link);
     }
 });
