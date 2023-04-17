@@ -12,27 +12,8 @@
   width: 238px;
 }
 
-.popup__container-title-text::before {
-  content: '';
-  display: block;
-  height: 1px;
-  /* Высота линии */
-  background: rgba(0, 0, 0, 0.2);
-  width: 238px;
-  top: 124px;
-  position: absolute;
-}
 
-.popup__container-title-text::after {
-  content: '';
-  display: block;
-  height: 1px;
-  /* Высота линии */
-  background: rgba(0, 0, 0, 0.2);
-  width: 238px;
-  top: 181px;
-  position: absolute;
-}
+
 
 @media screen and (min-width: 768px) {
   .popup__container-title-text {
@@ -44,15 +25,7 @@
 
   }
 
-  .popup__container-title-text::before {
-    width: 358px;
-    top: 104px;
-  }
 
-  .popup__container-title-text::after {
-    top: 161px;
-    width: 358px;
-  }
 
 
 

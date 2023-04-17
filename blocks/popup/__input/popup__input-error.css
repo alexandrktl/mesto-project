@@ -1,0 +1,24 @@
+.popup__input-error {
+    width: 238px;
+    color: red;
+    opacity: 0;
+    top: calc(100% + 5px);
+    left: 0;
+    transition: 0.3s;
+    /* возможно попросят убрать*/
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+    margin: 5px auto 0 auto;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .popup__input-error {
+        width: 358px;
+    }
+}
