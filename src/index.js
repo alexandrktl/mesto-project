@@ -191,6 +191,26 @@ popupCloseButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
+//закрыть любой попап нажатием на оверлей
+popups.forEach((thisPopup) => {
+    thisPopup.addEventListener('click', (evt) => {
+        console.log(evt.target);
+         if(evt.target.classList.contains('popup')){
+            closePopup(thisPopup);
+         }
+        // }
+    });
+});
+
+
+
+
+
+
+
+
+
+
 //кнопка сохранить в попапе редактирования профиля 
 //отменили обновление страницы для всех сабмитов и очистили поля после использования                  
 editProfileForm.addEventListener('submit', function (evt) {
