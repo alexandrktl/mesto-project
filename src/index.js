@@ -93,7 +93,7 @@ const hideError = (formElement, input) => {
 const checkInputValidity = (formElement, inputElement) => {
     const regex = /[^а-я0-9\-\s\w\ё]/gi;
     // const regexOneElem = /.{1,1}/gi;
-    if (regex.test(inputElement.value)) {
+    if (regex.test(inputElement.value) && inputElement.type!=='url') {//если попадает под регулярку и не является ссылкой
         inputElement.setCustomValidity('оба поля могут содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы');
         showError(formElement, inputElement, inputElement.validationMessage);
     }else if(inputElement.validity.valid===false){
