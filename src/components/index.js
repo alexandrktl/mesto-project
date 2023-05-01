@@ -1,4 +1,4 @@
-import './pages/index.css'; // добавьте импорт главного файла стилей 
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
 const page = document.querySelector('.page');
 const popup = document.querySelector('.popup');//попап общий
 const popups = document.querySelectorAll('.popup');//все попапы 
@@ -142,31 +142,6 @@ function enableValidation() {
 enableValidation();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //функция перенос текста из профиля в попап 
 function transferTextFromHeader() {
     insertedName.value = (profileName.textContent)
@@ -207,7 +182,6 @@ popupCloseButtons.forEach((button) => {
 document.addEventListener('keydown', (evt) => {
     if (document.querySelector('.popup_opened')) {
         if (evt.key == 'Escape') {
-            console.log('close');
             closePopup(document.querySelector('.popup_opened'));
         }
     };
@@ -222,35 +196,6 @@ popups.forEach((thisPopup) => {
     });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
