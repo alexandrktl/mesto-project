@@ -1,4 +1,9 @@
-import '../pages/index.css'; // добавьте импорт главного файла стилей 
+import './pages/index.css'; // добавьте импорт главного файла стилей 
+
+//import { showError } from './components/validate';
+
+
+
 const popups = document.querySelectorAll('.popup');//все попапы 
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
 const bigImgPopup = document.querySelector('.popup_type-big-image');//попап большой картинки
@@ -48,7 +53,6 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1616421275384-a4871cf679d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
     }
 ];
-
 
 
 
