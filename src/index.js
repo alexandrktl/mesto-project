@@ -62,7 +62,7 @@ const initialCards = [
 
 
 
-//пошла валидация -- прописать стили ошибок в зависимости размера экрана
+
 
 const showError = (formElement, input, errorMessage) => {
     const errorElement = formElement.querySelector(`#${input.id}-error`);
@@ -91,10 +91,19 @@ const hideError = (formElement, input) => {
 }
 
 const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {
+    const regex = /[^а-я0-9\-\s\w\ё]/gi;
+    // const regexOneElem = /.{1,1}/gi;
+    if (regex.test(inputElement.value)) {
+        inputElement.setCustomValidity('оба поля могут содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы');
         showError(formElement, inputElement, inputElement.validationMessage);
-    } else {
+    }else if(inputElement.validity.valid===false){
+        //console.log('lol');
+        inputElement.setCustomValidity('');
+        showError(formElement, inputElement, inputElement.validationMessage);
+    }
+    else {
         hideError(formElement, inputElement);
+        inputElement.setCustomValidity('');
     }
 };
 
@@ -108,6 +117,7 @@ const setEventListeners = (formElement) => {
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
+            // console.log(e.data)
             checkInputValidity(formElement, inputElement);
             toggleButtonState(inputList, buttonElement);
         });
@@ -194,10 +204,9 @@ popupCloseButtons.forEach((button) => {
 //закрыть любой попап нажатием на оверлей
 popups.forEach((thisPopup) => {
     thisPopup.addEventListener('click', (evt) => {
-        console.log(evt.target);
-         if(evt.target.classList.contains('popup')){
+        if (evt.target.classList.contains('popup')) {
             closePopup(thisPopup);
-         }
+        }
         // }
     });
 });
