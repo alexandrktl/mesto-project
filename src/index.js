@@ -1,5 +1,5 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
-
+const page = document.querySelector('.page');
 const popup = document.querySelector('.popup');//попап общий
 const popups = document.querySelectorAll('.popup');//все попапы 
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
@@ -93,10 +93,10 @@ const hideError = (formElement, input) => {
 const checkInputValidity = (formElement, inputElement) => {
     const regex = /[^а-я0-9\-\s\w\ё]/gi;
     // const regexOneElem = /.{1,1}/gi;
-    if (regex.test(inputElement.value) && inputElement.type!=='url') {//если попадает под регулярку и не является ссылкой
+    if (regex.test(inputElement.value) && inputElement.type !== 'url') {//если попадает под регулярку и не является ссылкой
         inputElement.setCustomValidity('оба поля могут содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы');
         showError(formElement, inputElement, inputElement.validationMessage);
-    }else if(inputElement.validity.valid===false){
+    } else if (inputElement.validity.valid === false) {
         //console.log('lol');
         inputElement.setCustomValidity('');
         showError(formElement, inputElement, inputElement.validationMessage);
@@ -199,17 +199,51 @@ popupCloseButtons.forEach((button) => {
     const popup = button.closest('.popup');
     // устанавливаем обработчик закрытия на крестик
     button.addEventListener('click', () => closePopup(popup));
+
+
 });
 
-//закрыть любой попап нажатием на оверлей
+//закрыть любой попап ажатием на esc
+document.addEventListener('keydown', (evt) => {
+    if (document.querySelector('.popup_opened')) {
+        if (evt.key == 'Escape') {
+            console.log('close');
+            closePopup(document.querySelector('.popup_opened'));
+        }
+    };
+});
+
+//закрыть любой попап нажатием на оверлей и нажатием на esc
 popups.forEach((thisPopup) => {
     thisPopup.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup')) {
             closePopup(thisPopup);
         }
-        // }
     });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
