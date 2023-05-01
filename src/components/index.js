@@ -1,13 +1,8 @@
 import '../pages/index.css'; // добавьте импорт главного файла стилей 
-const page = document.querySelector('.page');
-const popup = document.querySelector('.popup');//попап общий
 const popups = document.querySelectorAll('.popup');//все попапы 
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
 const bigImgPopup = document.querySelector('.popup_type-big-image');//попап большой картинки
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
-const popupContainer = document.querySelector('.popup__container');//контейнер попапа
-
-const popupProfileForms = document.querySelectorAll('.popup__profile-form');//формы-часть попапа для навешивания сабмита
 
 const cardsGrid = document.querySelector('.places-grid');// контейнер для карточек
 const editProfileForm = document.querySelector('#editProfileForm'); //форма у попапа редактирования профиля
@@ -18,10 +13,7 @@ const urlOfCardText = document.querySelector('.popup_text-new-place-img-url');
 
 const profileEditButton = document.querySelector('.profile__edit-button');//кнопка редактирования профиля
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');//все кнопки закрыть попап 
-
-const popupSaveButton = document.querySelector('.popup__save-button')//кнопка сохранить в попапе редактирования пофиля
 const addCardButton = document.querySelector('.profile__add-card-button');//кнопка открытия попапа добавления карточки
-const addNewCardButton = document.querySelector('.popup__add-button');//кнопка одобавления карточки в попапе
 
 
 
@@ -56,6 +48,43 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1616421275384-a4871cf679d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
     }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
