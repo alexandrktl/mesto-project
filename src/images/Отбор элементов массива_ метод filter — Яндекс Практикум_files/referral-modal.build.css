@@ -1,0 +1,157 @@
+.referral-modal__portals {
+        --z-index-referral-modal-portals: calc(var(--z-index-profile-portals, 1000) * 20);
+
+        z-index: var(--z-index-referral-modal-portals);
+    }
+    .referral-modal__wrapper .referral-modal__close {
+        position: absolute;
+        top: var(--spacing-12);
+        right: var(--spacing-12);
+        background-color: var(--color-background-default);
+    }
+    .referral-modal__wrapper {
+        --modal-margin: var(--spacing-32);
+
+        display: flex;
+        flex-direction: column;
+        width: 764px;
+        max-width: calc(100% - var(--modal-margin));
+        max-height: calc(100% - var(--modal-margin));
+        border-radius: var(--border-radius-20);
+    }
+    @media (max-width: 767px) {
+    .referral-modal__wrapper {
+            height: 100%;
+            border-radius: var(--border-radius-12)
+    }
+        }
+    .referral-modal__scrollable {
+        height: 100%;
+    }
+    .referral-modal__content {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 696px;
+        max-width: 100%;
+        min-height: 100%;
+        padding: 32px;
+    }
+    @media (max-width: 767px) {
+    .referral-modal__content {
+            padding: 32px 16px 16px
+    }
+        }
+    .referral-modal__title {
+        margin: 0 0 var(--spacing-16);
+        font: var(--font-ys-header-48-medium);
+    }
+    @media (max-width: 767px) {
+    .referral-modal__title {
+            margin: 0 0 var(--spacing-24);
+            padding-right: 44px;
+            font: var(--font-ys-header-28-medium)
+    }
+        }
+    .referral-modal__text {
+        margin: 0 0 var(--spacing-32);
+        font: var(--font-ys-body-18-medium-ui);
+    }
+    .referral-modal__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-32);
+    }
+    @media (max-width: 767px) {
+    .referral-modal__actions {
+            flex-direction: column-reverse;
+            margin-top: auto
+    }
+        }
+    .referral-modal__button_process.referral-modal__button_process.referral-modal__button_process.referral-modal__button_process {
+            background-color: var(--color-accent-neutral);
+        }
+    @media (max-width: 767px) {
+    .referral-modal__button {
+            position: sticky;
+            bottom: 16px;
+            width: 100%
+    }
+        }
+    .referral-modal__image {
+        width: 430px;
+        max-width: 100%;
+    }
+
+.prisma-modal__overlay {
+        background-color: var(--color-background-overlay);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .prisma-modal__content {
+        --modal-content-margin: var(--spacing-8);
+
+        box-sizing: border-box;
+
+        background-color: var(--color-background-default);
+        overflow: hidden;
+
+        border-radius: var(--border-radius-12);
+
+        max-width: 1424px;
+
+        outline: none;
+    }
+    .prisma-modal__content_full-screen {
+            height: calc(100% - 2 * var(--modal-content-margin));
+            width: calc(100% - 2 * var(--modal-content-margin));
+        }
+    /* классы для CSSTransition */
+    .prisma-modal_animated-enter,
+        .prisma-modal_animated-appear {
+            opacity: 0.1;
+        }
+    .prisma-modal_animated-enter .prisma-modal__content_animated, .prisma-modal_animated-appear .prisma-modal__content_animated {
+                transform: translateY(50px) scale(0.98);
+                opacity: 0;
+            }
+    .prisma-modal_animated-enter-active,
+        .prisma-modal_animated-enter-done,
+        .prisma-modal_animated-appear-active,
+        .prisma-modal_animated-appear-done {
+            opacity: 1;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+    .prisma-modal_animated-enter-active .prisma-modal__content_animated, .prisma-modal_animated-enter-done .prisma-modal__content_animated, .prisma-modal_animated-appear-active .prisma-modal__content_animated, .prisma-modal_animated-appear-done .prisma-modal__content_animated {
+                transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+
+                transform: translateY(0px) scale(1);
+                opacity: 1;
+            }
+    .prisma-modal_animated-exit {
+            opacity: 1;
+        }
+    .prisma-modal_animated-exit .prisma-modal__content_animated {
+                opacity: 1;
+            }
+    .prisma-modal_animated-exit-active {
+            opacity: 0.1;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+    .prisma-modal_animated-exit-active .prisma-modal__content_animated {
+                transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+
+                transform: translateY(50px) scale(0.98);
+                opacity: 0;
+            }
+
+
+/*# sourceMappingURL=https://s3.mds.yandex.net/wirth-sourcemaps/v2.39/build/referral-modal.build.css.map*/

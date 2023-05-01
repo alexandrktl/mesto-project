@@ -1,8 +1,10 @@
 
 const popup = document.querySelector('.popup');//попап общий
+const popups = document.querySelectorAll('.popup');//все попапы 
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
 const bigImgPopup = document.querySelector('.popup_type-big-image');//попап большой картинки
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
+const popupContainer = document.querySelector('.popup__container');//контейнер попапа
 
 const popupProfileForms = document.querySelectorAll('.popup__profile-form');//формы-часть попапа для навешивания сабмита
 
@@ -54,6 +56,105 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1616421275384-a4871cf679d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
     }
 ];
+
+
+
+
+
+
+//пошла валидация -- прописать стили ошибок в зависимости размера экрана
+
+const showError = (formElement, input, errorMessage) => {
+    const errorElement = formElement.querySelector(`#${input.id}-error`);
+    input.classList.add('popup__input_type_error');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('popup__input-error_active');
+
+}
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    });
+}
+const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add('popup__submit-button_inactive');
+    } else {
+        buttonElement.classList.remove('popup__submit-button_inactive');
+    }
+}
+const hideError = (formElement, input) => {
+    const errorElement = formElement.querySelector(`#${input.id}-error`);
+    input.classList.remove('popup__input_type_error');
+    errorElement.classList.remove('popup__input-error_active');
+    errorElement.textContent = "";
+}
+
+const checkInputValidity = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+        showError(formElement, inputElement, inputElement.validationMessage);
+    } else {
+        hideError(formElement, inputElement);
+    }
+};
+
+const setEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    const buttonElement = formElement.querySelector('.popup__submit-button');
+    toggleButtonState(inputList, buttonElement);
+
+
+
+
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', function () {
+            checkInputValidity(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement);
+        });
+    });
+};
+
+
+function enableValidation() {
+    let formList = Array.from(document.querySelectorAll('.popup__profile-form'));
+    formList.forEach((formElement) => {
+        formElement.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
+        const fieldsetList=Array.from(formElement.querySelectorAll('.form__set'));
+        fieldsetList.forEach((fieldset)=>{
+          setEventListeners(fieldset);
+        });
+        setEventListeners(formElement); 
+    });
+
+}
+enableValidation();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //функция перенос текста из профиля в попап 
@@ -119,7 +220,6 @@ addCardButton.addEventListener('click', function () {
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup), transferTextFromHeader();
-    //console.log(cardsGrid)
 });
 
 //функция добавления карточки
@@ -161,3 +261,59 @@ document.addEventListener('DOMContentLoaded', () => {
         closePopup(addPhotoPopup);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

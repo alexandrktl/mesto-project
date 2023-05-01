@@ -1,0 +1,18 @@
+.place-card{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: white;
+    width: 282px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    
+    
+}
+@media screen and (min-width: 768px) {
+    .places-card {
+      margin-top: 47px;
+      
+    }
+}

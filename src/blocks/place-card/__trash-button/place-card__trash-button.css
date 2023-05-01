@@ -1,0 +1,21 @@
+.place-card__trash-button {
+  display: flex;
+  position: relative;
+  width: 18px;
+  height: 19px;
+  bottom: 262px;
+  left: 242px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../../images/trash-icon.svg);
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.place-card__trash-button:hover{
+  opacity: 0.6;
+  cursor:pointer;
+  
+}

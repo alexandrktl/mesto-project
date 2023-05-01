@@ -1,9 +1,0 @@
-.popup__container_big-image{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  z-index: 3;
-  box-sizing: border-box;
-  
-}
-
