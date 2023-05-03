@@ -2,7 +2,7 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
 
 
-
+//тут изменения из ветки сервер-ворк
 
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
