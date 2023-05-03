@@ -1,4 +1,8 @@
+//приступаю к серверной части
 import './pages/index.css'; // добавьте импорт главного файла стилей 
+
+
+
 
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
