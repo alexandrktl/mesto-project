@@ -1,4 +1,4 @@
-
+//основной скрипт
 const popup = document.querySelector('.popup');//попап общий
 const popups = document.querySelectorAll('.popup');//все попапы 
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
