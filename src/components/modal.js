@@ -3,7 +3,6 @@ import { addCard } from "./card";
 
 
 
-
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');//все кнопки закрыть попап 
 const popups = document.querySelectorAll('.popup');//все попапы 
