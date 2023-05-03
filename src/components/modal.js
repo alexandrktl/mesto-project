@@ -1,6 +1,9 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
 
+
+
+
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');//все кнопки закрыть попап 
 const popups = document.querySelectorAll('.popup');//все попапы 
@@ -17,7 +20,6 @@ const profileName = document.querySelector('.profile__name-text');//текст-�
 const profileDescriptionText = document.querySelector('.profile__description-text');//текст-описаание в профиле
 
 
-
 //функция перенос текста из профиля в попап 
 function transferTextFromHeader() {
     insertedName.value = (profileName.textContent)
@@ -27,7 +29,9 @@ function transferTextFromHeader() {
 //функция закрыть любой попап 
 function closePopup(anyPopup) {
     anyPopup.classList.add('popup_transition');
-    anyPopup.classList.toggle('popup_opened');
+    anyPopup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
+
 }
 
 
@@ -40,7 +44,17 @@ function transferTextFromPopup() {
 
 //функция открыть любой попап
 function openPopup(whatToOpen) {
-    whatToOpen.classList.toggle('popup_opened');
+    whatToOpen.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
+    if(Array.from(whatToOpen.classList).includes('popup_type-big-image')){  // если модалка большой каритнки- не очищай поля
+        return;
+    }
+    const submitButton=whatToOpen.querySelector('.popup__submit-button');//собака зарыта
+    submitButton.classList.add('popup__submit-button_inactive');
+    const errorSpan=whatToOpen.querySelector('.popup__input-error');//собака зарыта
+    errorSpan.textContent='';
+    errorSpan.classList.remove('popup__input-error_active')
+
 }
 
 //кнопка закрыть любой попап
@@ -55,13 +69,16 @@ popupCloseButtons.forEach((button) => {
 });
 
 //закрыть любой попап ажатием на esc
-document.addEventListener('keydown', (evt) => {
-    if (document.querySelector('.popup_opened')) {
-        if (evt.key == 'Escape') {
-            closePopup(document.querySelector('.popup_opened'));
-        }
-    };
-});
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened') //нашли открытый попап
+        closePopup(openedPopup);
+    }
+}
+
+
+
+
 
 //закрыть любой попап нажатием на оверлей и нажатием на esc
 popups.forEach((thisPopup) => {
@@ -90,12 +107,17 @@ addCardForm.addEventListener('submit', function (evt) {
     const cardName = nameOfImgText.value;
     const imageUrl = urlOfCardText.value;
     addCard(cardName, imageUrl);
+    closePopup(addPhotoPopup);
     evt.target.reset();
+
 });
 
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {
     openPopup(addPhotoPopup);
+    // //тут нужно деактивировать кнопку
+    // formSubmitButton.classList.add('popup__submit-button_inactive');
+
 });
 
 //кнопка редактировать профиль 
@@ -104,4 +126,4 @@ profileEditButton.addEventListener('click', function () {
 });
 
 
-export{transferTextFromHeader,closePopup,transferTextFromPopup,openPopup,addPhotoPopup}
+export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup }

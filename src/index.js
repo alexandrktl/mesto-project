@@ -1,11 +1,8 @@
-//приступаю к серверной части
 import './pages/index.css'; // добавьте импорт главного файла стилей 
-
-
-//тут изменения из ветки сервер-ворк
 
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
+
 
 const initialCards = [
     {
@@ -34,11 +31,21 @@ const initialCards = [
     }
 ];
 
+const setting={
+    inputErrorClass: 'popup__input_type_error',
+    popupFormSelector: '.popup__profile-form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    errorClass: 'popup__input-error_active',
+    inactiveButtonClass: 'popup__submit-button_inactive',
+  }
 //вызвали проверку валидации
-enableValidation();
+enableValidation(setting);
 
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = initialCards.length - 1; i >= 0; i--) {
         const asdasd = addCard(initialCards[i].name, initialCards[i].link);
     }
 });
+
+
