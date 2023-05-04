@@ -1,6 +1,6 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
 
-import { addCard } from './components/card';
+import { insertCard } from './components/card';
 import { enableValidation } from './components/validate';
 
 
@@ -38,13 +38,14 @@ const setting={
     submitButtonSelector: '.popup__submit-button',
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
+    formSet:'.form__set'
   }
 //вызвали проверку валидации
 enableValidation(setting);
 
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = initialCards.length - 1; i >= 0; i--) {
-        const asdasd = addCard(initialCards[i].name, initialCards[i].link);
+        const asdasd = insertCard(initialCards[i].name, initialCards[i].link);
     }
 });
 

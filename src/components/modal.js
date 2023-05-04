@@ -1,5 +1,6 @@
 //все что есть в модальных окнах-попапах
-import { addCard } from "./card";
+import { insertCard } from "./card";
+
 
 
 
@@ -45,16 +46,9 @@ function transferTextFromPopup() {
 function openPopup(whatToOpen) {
     whatToOpen.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
-    if(Array.from(whatToOpen.classList).includes('popup_type-big-image')){  // если модалка большой каритнки- не очищай поля
-        return;
     }
-    const submitButton=whatToOpen.querySelector('.popup__submit-button');//собака зарыта
-    submitButton.classList.add('popup__submit-button_inactive');
-    const errorSpan=whatToOpen.querySelector('.popup__input-error');//собака зарыта
-    errorSpan.textContent='';
-    errorSpan.classList.remove('popup__input-error_active')
+    
 
-}
 
 //кнопка закрыть любой попап
 // находим все крестики проекта по универсальному селектору
@@ -105,7 +99,7 @@ addCardForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
     const cardName = nameOfImgText.value;
     const imageUrl = urlOfCardText.value;
-    addCard(cardName, imageUrl);
+    insertCard(cardName, imageUrl);
     closePopup(addPhotoPopup);
     evt.target.reset();
 
@@ -114,15 +108,30 @@ addCardForm.addEventListener('submit', function (evt) {
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {
     openPopup(addPhotoPopup);
-    // //тут нужно деактивировать кнопку
-    // formSubmitButton.classList.add('popup__submit-button_inactive');
-
+     //тут нужно деактивировать кнопку
+     cleanAll(addPhotoPopup);
 });
-
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup), transferTextFromHeader();
+    //тут нужно деактивировать кнопку
+    cleanAll(editProfilePopup);
 });
+
+//собрать обе кнопки и навешать обои  событие очистки
+//написать функцию которая деактивирует и кнопку и спан и вызывать эту функцию при кликах на сабмиты модалок
+function cleanAll(popup) {
+    const submitButton = popup.querySelector('.popup__submit-button');//собака зарыта
+    submitButton.classList.add('popup__submit-button_inactive');
+    submitButton.disabled = true;
+    submitButton.value = 'Disabled';
+    const errorSpan = popup.querySelector('.popup__input-error');//собака зарыта
+    errorSpan.textContent = '';
+    errorSpan.classList.remove('popup__input-error_active')
+}
+
+
+
 
 
 export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup }

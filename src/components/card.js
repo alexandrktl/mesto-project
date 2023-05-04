@@ -8,13 +8,14 @@ const bigImgText = document.querySelector('.popup_text-big-image');
 import { openPopup } from "./modal";
 
 
-// тут создаете карточку и возвращаете ее
-function insertCard(card) {
-    cardsGrid.prepend(card); //вставили карточкy в начало
-    return card;
+// тут создаете карточку и вставляет ее в разметку
+function insertCard(nameFromPopup, urlFromPopup) {
+    const newCard = addCard(nameFromPopup, urlFromPopup);
+    cardsGrid.prepend(newCard); //вставили карточкy в начало
+
 }
 
-//функция добавления карточки
+//функция создания карточки
 function addCard(nameFromPopup, urlFromPopup) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
@@ -42,11 +43,9 @@ function addCard(nameFromPopup, urlFromPopup) {
         bigImgText.textContent = card.querySelector('.place-card__desctiption-text').textContent;//нашли текст у попапа и заменили его на текст из карточки
         mainImg.alt = `${bigImgText.textContent}-big-photo`
     });
-    insertCard(card);
-
-    
+    return card;//создал карточку, но не вставил её
 }
-export { addCard };
+export { insertCard, addCard };
 
 
 

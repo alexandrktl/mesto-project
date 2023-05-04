@@ -5,7 +5,7 @@ const showError = (formElement, input, errorMessage,setting) => {
    // input.classList.add('popup__input_type_error'); 
     input.classList.add(setting.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active');
+    errorElement.classList.add(setting.errorClass);
 
 }
 const hasInvalidInput = (inputList) => {
@@ -72,7 +72,7 @@ function enableValidation(setting) {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-        const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
+        const fieldsetList = Array.from(formElement.querySelectorAll(setting.formSet));
 
         fieldsetList.forEach((fieldset) => {
             setEventListeners(fieldset,setting);
