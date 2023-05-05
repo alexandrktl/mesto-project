@@ -1,6 +1,6 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
-
+import { getUserInfo } from "./api";
 
 
 
@@ -124,6 +124,30 @@ addCardButton.addEventListener('click', function () {
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup), transferTextFromHeader();
 });
+
+
+
+getUserInfo()
+.then((res)=>{
+    // console.log(res);
+    profileName.textContent=res.name;
+    profileDescriptionText.textContent=res.about;
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup }

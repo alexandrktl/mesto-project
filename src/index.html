@@ -19,8 +19,8 @@
             <section class="profile">
                 <img alt="your-avatar-image" class="profile__avatar" src="<%=require('./images/avatar.jpg')%>">
                 <div class="profile__info">
-                    <h1 class="profile__name-text">Стиг</h1>
-                    <p class="profile__description-text">Коллекционер автомобилей</p>
+                    <h1 class="profile__name-text"></h1>
+                    <p class="profile__description-text"></p>
                     <button aria-label="Изменить" type="button" class="profile__edit-button"></button>
                 </div>
                 <button aria-label="Добавить карточку" type="button" class="profile__add-card-button"></button>
@@ -93,7 +93,10 @@
             <button aria-label="trash-button " type="button" class="place-card__trash-button"></button>
             <div class="place-card__description">
                 <h2 class="place-card__desctiption-text"></h2>
+                <div class="place-card__like-set">
                 <button aria-label="Like-button " type="button" class="place-card__like-button"></button>
+                <span id="likes-number" class="place-card__like-number"></span>
+                </div>
             </div>
         </article>
     </template>

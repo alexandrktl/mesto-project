@@ -1,0 +1,5 @@
+.place-card__like-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
