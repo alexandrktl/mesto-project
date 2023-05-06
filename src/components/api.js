@@ -11,29 +11,43 @@ const token = 'ff079546-db20-4fbb-8f18-2cc7ab32ac96';
 
 
 
-function mainFetch(path, methodToDo) {
+function mainFetch(path, methodToDo, bodyPart,contType) {
     return fetch(`${HOST}/${path}`, {
         method: methodToDo,
         headers: {
             authorization: `${token}`,
+            'Content-Type': null|| `${contType}`
         },
-        // body: JSON.stringify({
-        //     name: '',
-        //     about: ''
-        //   })
+         body:null||bodyPart
+
     }).then((res) => {
         if (res.ok) {
             return res.json(); // возвращаем вызов метода json
         }else{
             return Promise.reject(res.status);
         }
-
     })
-
     .catch((reject)=>{
         console.error(`failed fetch. Code error:${reject}`)
     })
 }
+
+
+function refreshUserInfo(mod) {
+    const body= JSON.stringify({
+         name: `${mod.newName}`,
+         about: `${mod.newAbout}`
+       });
+    const contType = mod.contentType
+    ;
+     return mainFetch("users/me", "PATCH",body,contType)
+ };
+
+
+
+
+
+
 
 
 
@@ -52,13 +66,11 @@ function getLikesCount() {
     return mainFetch("likes", "GET")
 };
 
-// function refreshUserInfo() {
-//     return mainFetch("users/me", "PATCH",)
-// };
 
 
 
 
 
 
-export { getCards, getUserInfo,getLikesCount };
+
+export { getCards, getUserInfo,getLikesCount,refreshUserInfo };

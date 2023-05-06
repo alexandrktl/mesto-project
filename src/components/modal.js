@@ -1,6 +1,6 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
-import { getUserInfo } from "./api";
+import { getUserInfo, refreshUserInfo } from "./api";
 
 
 
@@ -35,24 +35,94 @@ function closePopup(anyPopup) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//функция перенос имени и описания с сервева
+function getNameFromServer() {
+    getUserInfo() //вставили новые данные из сервера
+        .then((res) => {
+            //console.log(res);
+            profileName.textContent = res.name;
+            profileDescriptionText.textContent = res.about;
+        });
+}
+
 //функция перенос текста из попапа в профиль
 function transferTextFromPopup() {
-    profileName.textContent = insertedName.value;
-    profileDescriptionText.textContent = insertedDescription.value;
+    // profileName.textContent = insertedName.value;
+    // profileDescriptionText.textContent = insertedDescription.value;
+
+    const newName = insertedName.value;//передали значения полей в переменные
+    const NewDiscription = insertedDescription.value;
+
+    const mod = {
+        newName: `${newName}`,//отдали эти переменные
+        newAbout: `${NewDiscription}`,
+        contentType: 'application/json',
+    }
+    refreshUserInfo(mod);//обновили данные сервера на переменные выше
+    getNameFromServer();
+
+
     closePopup(editProfilePopup);
 }
+
+
+
+//почему-то работает через раз, заменить карточку архыз чтобы не маячила ошибка
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //функция открыть любой попап
 function openPopup(whatToOpen) {
     whatToOpen.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
-    if(Array.from(whatToOpen.classList).includes('popup_type-big-image')){  // если модалка большой каритнки- не очищай поля
+    if (Array.from(whatToOpen.classList).includes('popup_type-big-image')) {  // если модалка большой каритнки- не очищай поля
         return;
     }
-    const submitButton=whatToOpen.querySelector('.popup__submit-button');//собака зарыта
+    const submitButton = whatToOpen.querySelector('.popup__submit-button');//собака зарыта
     submitButton.classList.add('popup__submit-button_inactive');
-    const errorSpan=whatToOpen.querySelector('.popup__input-error');//собака зарыта
-    errorSpan.textContent='';
+    const errorSpan = whatToOpen.querySelector('.popup__input-error');//собака зарыта
+    errorSpan.textContent = '';
     errorSpan.classList.remove('popup__input-error_active')
 
 }
@@ -127,12 +197,12 @@ profileEditButton.addEventListener('click', function () {
 
 
 
-getUserInfo()
-.then((res)=>{
-    // console.log(res);
-    profileName.textContent=res.name;
-    profileDescriptionText.textContent=res.about;
-})
+// getUserInfo()
+//     .then((res) => {
+//         // console.log(res);
+//         profileName.textContent = res.name;
+//         profileDescriptionText.textContent = res.about;
+//     });
 
 
 
@@ -150,4 +220,8 @@ getUserInfo()
 
 
 
-export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup }
+
+
+
+
+export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup, getNameFromServer }

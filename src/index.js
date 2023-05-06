@@ -2,7 +2,7 @@ import './pages/index.css'; // добавьте импорт главного ф
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
 import { getCards } from './components/api';
-const allCards = document.querySelectorAll('.place-card');
+import { getNameFromServer } from './components/modal';
 
 
 
@@ -47,6 +47,22 @@ const setting = {
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
 }
+function getFreshCardsFromServer(){
+    getCards()
+    .then((cards) => {
+        //console.log(cards)
+        cards.forEach(card => {
+            addCard(card.name, card.link, card.likes.length)
+        });
+    })
+}
+
+
+
+
+
+getNameFromServer();
+getFreshCardsFromServer();
 //вызвали проверку валидации
 enableValidation(setting);
 
@@ -54,11 +70,10 @@ enableValidation(setting);
 
 
 
-getCards()
-    .then((cards) => {
-        console.log(cards)
-        cards.forEach(card => {
-            addCard(card.name, card.link, card.likes.length)
-        });
-    })
+
+
+
+
+
+
 
