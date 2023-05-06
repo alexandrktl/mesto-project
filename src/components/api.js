@@ -61,4 +61,4 @@ function getLikesCount() {
 
 
 
-export { getCards, getUserInfo };
+export { getCards, getUserInfo,getLikesCount };

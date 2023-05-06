@@ -58,13 +58,7 @@ getCards()
     .then((cards) => {
         console.log(cards)
         cards.forEach(card => {
-            addCard(card.name, card.link)
-            //логика добавления лайков-не проверял , ибо у всех в масиве число лайков равно нулю
-            allCards.forEach(card => {
-                console.log('cards')
-                console.log(card.likes.length);
-                card.querySelector('.place-card__like-number').textContent = `${card.likes.length}`;
-            })
+            addCard(card.name, card.link, card.likes.length)
         });
     })
 

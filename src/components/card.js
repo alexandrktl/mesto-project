@@ -15,7 +15,7 @@ function insertCard(card) {
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup) {
+function addCard(nameFromPopup, urlFromPopup, likesCount) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
@@ -26,6 +26,12 @@ function addCard(nameFromPopup, urlFromPopup) {
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('place-card__like-button_active');
     });
+     //количество лайков у карточки
+     if(likesCount<1){
+        card.querySelector('.place-card__like-number').textContent=0;
+     }else{
+        card.querySelector('.place-card__like-number').textContent=likesCount;
+     }
 
     //кнопка удаления карточки
     card.querySelector('.place-card__trash-button').addEventListener('click', function (evt) {
