@@ -1,7 +1,7 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
-import { getUserInfo, refreshUserInfo } from "./api";
-
+import { getUserInfo, refreshUserInfo, postCardToServer, getCards } from "./api";
+import { getFreshCardsFromServer } from "..";
 
 
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
@@ -34,24 +34,6 @@ function closePopup(anyPopup) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //функция перенос имени и описания с сервева
 function getNameFromServer() {
     getUserInfo() //вставили новые данные из сервера
@@ -77,39 +59,8 @@ function transferTextFromPopup() {
     }
     refreshUserInfo(mod);//обновили данные сервера на переменные выше
     getNameFromServer();
-
-
     closePopup(editProfilePopup);
 }
-
-
-
-//почему-то работает через раз, заменить карточку архыз чтобы не маячила ошибка
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //функция открыть любой попап
@@ -170,17 +121,106 @@ editProfileForm.addEventListener('submit', function (evt) {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //кнопка добавить новую карточку в попаде добавления нов карточки 
 //отменили обновление страницы для всех сабмитов и очистили поля после использования                  
 addCardForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
     const cardName = nameOfImgText.value;
     const imageUrl = urlOfCardText.value;
+    //тут нужно послать данные на сервер
+    const mod = {
+        name: `${cardName}`,    //отдали эти переменные
+        link: `${imageUrl}`,
+        contentType: 'application/json',  // тут нужно что-то другое
+    }
+    postCardToServer(mod);//обновили данные сервера на переменные выше
+    //туту нужно получить новую карточку с сервера 
     addCard(cardName, imageUrl);
+
+
+
+   
+
+
     closePopup(addPhotoPopup);
     evt.target.reset();
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {

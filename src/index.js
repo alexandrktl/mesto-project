@@ -50,8 +50,8 @@ const setting = {
 function getFreshCardsFromServer(){
     getCards()
     .then((cards) => {
-        //console.log(cards)
-        cards.forEach(card => {
+        console.log(cards)
+        cards.reverse().forEach(card => {
             addCard(card.name, card.link, card.likes.length)
         });
     })
@@ -72,7 +72,7 @@ enableValidation(setting);
 
 
 
-
+export{getFreshCardsFromServer}
 
 
 

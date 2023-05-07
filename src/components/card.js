@@ -8,11 +8,46 @@ const bigImgText = document.querySelector('.popup_text-big-image');
 import { openPopup } from "./modal";
 
 
-// тут создаете карточку и возвращаете ее
+// тут создаем карточку и возвращаете ее
 function insertCard(card) {
     cardsGrid.prepend(card); //вставили карточкy в начало
     return card;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //функция добавления карточки
 function addCard(nameFromPopup, urlFromPopup, likesCount) {
@@ -26,12 +61,12 @@ function addCard(nameFromPopup, urlFromPopup, likesCount) {
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('place-card__like-button_active');
     });
-     //количество лайков у карточки
-     if(likesCount<1){
-        card.querySelector('.place-card__like-number').textContent=0;
-     }else{
-        card.querySelector('.place-card__like-number').textContent=likesCount;
-     }
+    //количество лайков у карточки
+    if (likesCount < 1) {
+        card.querySelector('.place-card__like-number').textContent = 0;
+    } else {
+        card.querySelector('.place-card__like-number').textContent = likesCount;
+    }
 
     //кнопка удаления карточки
     card.querySelector('.place-card__trash-button').addEventListener('click', function (evt) {
@@ -50,8 +85,8 @@ function addCard(nameFromPopup, urlFromPopup, likesCount) {
     });
     insertCard(card);
 
-    
 }
+
 export { addCard };
 
 
