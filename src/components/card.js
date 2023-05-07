@@ -1,3 +1,6 @@
+import { profileName } from "./modal";
+
+
 //функционал только создание одной карточки!
 const cardsGrid = document.querySelector('.places-grid');// контейнер для карточек
 const bigImgPopup = document.querySelector('.popup_type-big-image');//попап большой картинки
@@ -50,13 +53,13 @@ function insertCard(card) {
 
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likesCount) {
+function addCard(nameFromPopup, urlFromPopup, likesCount, owner) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
     card.querySelector('.place-card__image').src = urlFromPopup; // тут меняем src у картинки
     card.querySelector('.place-card__image').alt = `${nameFromPopup}-photo`; //прописываем альт
-
+    const rubishIcon = card.querySelector('.place-card__trash-button');
     //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('place-card__like-button_active');
@@ -69,7 +72,7 @@ function addCard(nameFromPopup, urlFromPopup, likesCount) {
     }
 
     //кнопка удаления карточки
-    card.querySelector('.place-card__trash-button').addEventListener('click', function (evt) {
+    rubishIcon.addEventListener('click', function (evt) {
         const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
         const parentElement = eventTarget.closest('.place-card') // находим ближайший элемент
         parentElement.remove();                         //удаляем родителя 
@@ -83,6 +86,12 @@ function addCard(nameFromPopup, urlFromPopup, likesCount) {
         bigImgText.textContent = card.querySelector('.place-card__desctiption-text').textContent;//нашли текст у попапа и заменили его на текст из карточки
         mainImg.alt = `${bigImgText.textContent}-big-photo`
     });
+
+    //сделаем проверку-если овнер=имя аккаунта, то класс мусорки-актив
+    if (owner == profileName.textContent) {
+        rubishIcon.classList.add('place-card__trash-button_active');
+    };
+
     insertCard(card);
 
 }

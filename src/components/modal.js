@@ -1,7 +1,7 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
 import { getUserInfo, refreshUserInfo, postCardToServer, getCards } from "./api";
-import { getFreshCardsFromServer } from "..";
+
 
 
 const editProfilePopup = document.querySelector('.popup_type-edit-profile');//попап редактирования имени профиля
@@ -172,12 +172,6 @@ addCardForm.addEventListener('submit', function (evt) {
     postCardToServer(mod);//обновили данные сервера на переменные выше
     //туту нужно получить новую карточку с сервера 
     addCard(cardName, imageUrl);
-
-
-
-   
-
-
     closePopup(addPhotoPopup);
     evt.target.reset();
 
@@ -264,4 +258,4 @@ profileEditButton.addEventListener('click', function () {
 
 
 
-export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup, getNameFromServer }
+export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup, getNameFromServer,profileName }
