@@ -52,7 +52,6 @@ function getFreshCardsFromServer(){
     .then((cards) => {
         console.log(cards)
         cards.reverse().forEach(card => {
-            console.log(card.owner.name)
             addCard(card.name, card.link, card.likes.length,card.owner.name)
         });
     })

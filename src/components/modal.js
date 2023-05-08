@@ -169,9 +169,15 @@ addCardForm.addEventListener('submit', function (evt) {
         link: `${imageUrl}`,
         contentType: 'application/json',  // тут нужно что-то другое
     }
-    postCardToServer(mod);//обновили данные сервера на переменные выше
-    //туту нужно получить новую карточку с сервера 
-    addCard(cardName, imageUrl);
+    postCardToServer(mod)//обновили данные сервера на переменные выше
+        .then(() => {
+            getCards()
+                .then((cards) => {
+                    const newCardFromServer = cards[0];
+                    addCard(newCardFromServer.name, newCardFromServer.link, newCardFromServer.likes.length, newCardFromServer.owner.name)
+                })
+        })
+
     closePopup(addPhotoPopup);
     evt.target.reset();
 
@@ -258,4 +264,4 @@ profileEditButton.addEventListener('click', function () {
 
 
 
-export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup, getNameFromServer,profileName }
+export { transferTextFromHeader, closePopup, transferTextFromPopup, openPopup, addPhotoPopup, getNameFromServer, profileName }
