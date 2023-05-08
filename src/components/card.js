@@ -1,5 +1,5 @@
 import { profileName } from "./modal";
-import { deletCardFrServ } from "./api";
+import { deletCardFrServ, putLike, removeLike } from "./api";
 
 
 //функционал только создание одной карточки!
@@ -19,7 +19,7 @@ function insertCard(card) {
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likesCount, owner, id) {
+function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
@@ -27,61 +27,29 @@ function addCard(nameFromPopup, urlFromPopup, likesCount, owner, id) {
     card.querySelector('.place-card__image').alt = `${nameFromPopup}-photo`; //прописываем альт
     const rubishIcon = card.querySelector('.place-card__trash-button');
     card.id = id;
+    const likesCount = likes.length;
+    //console.log(likes);
+
+    //количество лайков у карточки
+    card.querySelector('.place-card__like-number').textContent = likesCount;
+
 
 
 
     //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('place-card__like-button_active');
+        //возможно ошибка с цифрами лайков
+        if (!evt.target.classList.contains('place-card__like-button_active')) {
+            putLike(id);
+            evt.target.classList.add('place-card__like-button_active');
+            card.querySelector('.place-card__like-number').textContent = likesCount + 1;
+        }else{
+           // console.log('likes');
+           removeLike(id);
+            evt.target.classList.remove('place-card__like-button_active');
+            card.querySelector('.place-card__like-number').textContent = likesCount ;
+        }
     });
-    //количество лайков у карточки
-    if (likesCount < 1) {
-        card.querySelector('.place-card__like-number').textContent = 0;
-    } else {
-        card.querySelector('.place-card__like-number').textContent = likesCount;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -94,40 +62,6 @@ function addCard(nameFromPopup, urlFromPopup, likesCount, owner, id) {
         deletCardFrServ(parentElement.id);          //удаляем родителя с сервера
         parentElement.remove();                         //удаляем родителя из разметки
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
     card.querySelector('.place-card__image').addEventListener('click', function (evt) {

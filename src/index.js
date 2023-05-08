@@ -52,7 +52,8 @@ function getFreshCardsFromServer(){
     .then((cards) => {
         console.log(cards)
         cards.reverse().forEach(card => {
-            addCard(card.name, card.link, card.likes.length,card.owner.name,card._id)
+            //console.log(card._id)
+            addCard(card.name, card.link, card.likes,card.owner.name,card._id)
         });
     })
 }

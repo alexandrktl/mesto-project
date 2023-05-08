@@ -52,11 +52,19 @@ function postCardToServer(mod) {
     return mainFetch("cards", "POST", body, contType)
 }
 
-function deletCardFrServ(id){
+function deletCardFrServ(id) {
     return mainFetch(`cards/${id}`, "DELETE")
 }
 
 
+
+
+function putLike(id) {
+    return mainFetch(`cards/likes/${id}`, "PUT")
+}
+function removeLike(id) {
+    return mainFetch(`cards/likes/${id}`, "DELETE")
+}
 
 
 
@@ -85,4 +93,13 @@ function getLikesCount() {
 
 
 
-export { getCards, getUserInfo, getLikesCount, refreshUserInfo, postCardToServer, deletCardFrServ };
+export {
+    getCards,
+    getUserInfo,
+    getLikesCount,
+    refreshUserInfo,
+    postCardToServer,
+    deletCardFrServ,
+    putLike,
+    removeLike
+};
