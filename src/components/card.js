@@ -1,4 +1,5 @@
 import { profileName } from "./modal";
+import { deletCardFrServ } from "./api";
 
 
 //функционал только создание одной карточки!
@@ -17,49 +18,18 @@ function insertCard(card) {
     return card;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likesCount, owner) {
+function addCard(nameFromPopup, urlFromPopup, likesCount, owner, id) {
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
     card.querySelector('.place-card__image').src = urlFromPopup; // тут меняем src у картинки
     card.querySelector('.place-card__image').alt = `${nameFromPopup}-photo`; //прописываем альт
     const rubishIcon = card.querySelector('.place-card__trash-button');
+    card.id = id;
+
+
+
     //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('place-card__like-button_active');
@@ -71,12 +41,93 @@ function addCard(nameFromPopup, urlFromPopup, likesCount, owner) {
         card.querySelector('.place-card__like-number').textContent = likesCount;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //кнопка удаления карточки
     rubishIcon.addEventListener('click', function (evt) {
         const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
         const parentElement = eventTarget.closest('.place-card') // находим ближайший элемент
-        parentElement.remove();                         //удаляем родителя 
+        deletCardFrServ(parentElement.id);          //удаляем родителя с сервера
+        parentElement.remove();                         //удаляем родителя из разметки
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
     card.querySelector('.place-card__image').addEventListener('click', function (evt) {

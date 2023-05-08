@@ -174,7 +174,8 @@ addCardForm.addEventListener('submit', function (evt) {
             getCards()
                 .then((cards) => {
                     const newCardFromServer = cards[0];
-                    addCard(newCardFromServer.name, newCardFromServer.link, newCardFromServer.likes.length, newCardFromServer.owner.name)
+                    addCard(newCardFromServer.name, newCardFromServer.link, newCardFromServer.likes.length, newCardFromServer.owner.name, newCardFromServer._id)
+               
                 })
         })
 
@@ -182,43 +183,6 @@ addCardForm.addEventListener('submit', function (evt) {
     evt.target.reset();
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
