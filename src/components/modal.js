@@ -1,5 +1,5 @@
 //все что есть в модальных окнах-попапах
-import { addCard } from "./card";import { getUserInfo, refreshUserInfo, postCardToServer, getCards, changeAvatarOnServer } from "./api";
+import { addCard } from "./card"; import { getUserInfo, refreshUserInfo, postCardToServer, getCards, changeAvatarOnServer } from "./api";
 
 
 
@@ -168,59 +168,23 @@ addCardForm.addEventListener('submit', function (evt) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //функция открыть любой попап
 function openPopup(whatToOpen) {
     whatToOpen.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 
-    }
-    
+
+
     if (Array.from(whatToOpen.classList).includes('popup_type-big-image')) {  // если модалка большой каритнки- не очищай поля
         return;
     }
+
     const submitButton = whatToOpen.querySelector('.popup__submit-button');//собака зарыта
     submitButton.classList.add('popup__submit-button_inactive');
     const errorSpan = whatToOpen.querySelector('.popup__input-error');//собака зарыта
     errorSpan.textContent = '';
     errorSpan.classList.remove('popup__input-error_active')
-
+}
 
 
 //кнопка закрыть любой попап
@@ -264,8 +228,8 @@ popups.forEach((thisPopup) => {
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {
     openPopup(addPhotoPopup);
-     //тут нужно деактивировать кнопку
-     cleanAll(addPhotoPopup);
+    //тут нужно деактивировать кнопку
+    cleanAll(addPhotoPopup);
 });
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
