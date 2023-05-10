@@ -1,5 +1,4 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
-
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
 import { getCards } from './components/api';
@@ -47,14 +46,35 @@ const setting = {
     submitButtonSelector: '.popup__submit-button',
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
-  }
+}
+function getFreshCardsFromServer(){
+    getCards()
+    .then((cards) => {
+       // console.log(cards)
+        cards.reverse().forEach(card => {
+            //console.log(card._id)
+            addCard(card.name, card.link, card.likes,card.owner.name,card._id)
+        });
+    })
+}
+
+
+
+
+
+getNameFromServer();
+getFreshCardsFromServer();
 //вызвали проверку валидации
 enableValidation(setting);
 
-document.addEventListener('DOMContentLoaded', () => {
-    for (let i = initialCards.length - 1; i >= 0; i--) {
-        const asdasd = addCard(initialCards[i].name, initialCards[i].link);
-    }
-});
+
+
+
+
+
+
+export{getFreshCardsFromServer}
+
+
 
 
