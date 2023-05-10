@@ -50,7 +50,7 @@ const setting = {
 function getFreshCardsFromServer(){
     getCards()
     .then((cards) => {
-        console.log(cards)
+       // console.log(cards)
         cards.reverse().forEach(card => {
             //console.log(card._id)
             addCard(card.name, card.link, card.likes,card.owner.name,card._id)

@@ -42,6 +42,22 @@ function refreshUserInfo(mod) {
         ;
     return mainFetch("users/me", "PATCH", body, contType)
 };
+
+function changeAvatarOnServer(mod) {
+    const body = JSON.stringify({
+        avatar: `${mod.newUrl}`
+    });
+    const contType = mod.contentType
+    return mainFetch("users/me/avatar", "PATCH", body,contType)
+}
+
+
+
+
+
+
+
+
 function postCardToServer(mod) {
     const body = JSON.stringify({
         name: `${mod.name}`,
@@ -74,12 +90,17 @@ function removeLike(id) {
 
 
 
+
+
+
+
 function getCards() {
     return mainFetch("cards", "GET")
 };
 
 function getUserInfo() {
     return mainFetch("users/me", "GET")
+    
 };
 function getLikesCount() {
     return mainFetch("likes", "GET")
@@ -101,5 +122,6 @@ export {
     postCardToServer,
     deletCardFrServ,
     putLike,
-    removeLike
+    removeLike,
+    changeAvatarOnServer
 };

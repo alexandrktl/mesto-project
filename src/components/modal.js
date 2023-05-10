@@ -1,6 +1,6 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card";
-import { getUserInfo, refreshUserInfo, postCardToServer, getCards } from "./api";
+import { getUserInfo, refreshUserInfo, postCardToServer, getCards, changeAvatarOnServer } from "./api";
 
 
 
@@ -9,15 +9,20 @@ const popupCloseButtons = document.querySelectorAll('.popup__close-button');//в
 const popups = document.querySelectorAll('.popup');//все попапы 
 const addCardButton = document.querySelector('.profile__add-card-button');//кнопка открытия попапа добавления карточки
 const addPhotoPopup = document.querySelector('.popup_type-new-place');//попап создания новой карточки
+const changeAvatarPopup = document.querySelector('.popup_type-change-avatar');//попап изменения аватара
 const editProfileForm = document.querySelector('#editProfileForm'); //форма у попапа редактирования профиля
+const changeAvatarForm = document.querySelector('#changeAvatarForm'); //форма у попапа редактирования аватара
 const addCardForm = document.querySelector('#addCardForm'); //форма у попапа добавления картинки
 const nameOfImgText = document.querySelector('.popup_text-new-place-img-name');
 const urlOfCardText = document.querySelector('.popup_text-new-place-img-url');
 const profileEditButton = document.querySelector('.profile__edit-button');//кнопка редактирования профиля
+const changeAvatarButton = document.querySelector('.profile__avatar');//кнопка редактирования аватара
 const insertedName = document.querySelector('.popup__input_text_person-name');//текст-имени в попапе
+const insertedAvatar = document.querySelector('.popup__input_text_new-avatar-url');//текст-новой ссылки логотипа в попапе
 const insertedDescription = document.querySelector('.popup__input_text_description-of-person');//текст-описаание в попапе
 const profileName = document.querySelector('.profile__name-text');//текст-имени в профиле
 const profileDescriptionText = document.querySelector('.profile__description-text');//текст-описаание в профиле
+const profileAvatar = document.querySelector('.profile__avatar');//аватарка профиля
 
 
 //функция перенос текста из профиля в попап 
@@ -41,14 +46,13 @@ function getNameFromServer() {
             //console.log(res);
             profileName.textContent = res.name;
             profileDescriptionText.textContent = res.about;
+            profileAvatar.src = res.avatar;
         });
 }
 
 //функция перенос текста из попапа в профиль
-function transferTextFromPopup() {
-    // profileName.textContent = insertedName.value;
-    // profileDescriptionText.textContent = insertedDescription.value;
-
+function transferTextFromPopup(submitBtn) {
+    submitBtn.textContent = 'Сохранение...';
     const newName = insertedName.value;//передали значения полей в переменные
     const NewDiscription = insertedDescription.value;
 
@@ -57,10 +61,148 @@ function transferTextFromPopup() {
         newAbout: `${NewDiscription}`,
         contentType: 'application/json',
     }
-    refreshUserInfo(mod);//обновили данные сервера на переменные выше
-    getNameFromServer();
-    closePopup(editProfilePopup);
+    refreshUserInfo(mod)
+        .then(() => {
+            getUserInfo()
+                .then((res) => {
+                    profileName.textContent = res.name;
+                    profileDescriptionText.textContent = res.about;
+                })
+            submitBtn.textContent = 'Сохранить';
+            closePopup(editProfilePopup);
+        })
+
+
+
 }
+
+
+
+//кнопка сохранить в попапе редактирования профиля 
+//отменили обновление страницы для всех сабмитов и очистили поля после использования                  
+editProfileForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    const submitBtn = editProfileForm.querySelector('.popup__submit-button');
+    transferTextFromPopup(submitBtn);
+
+    evt.target.reset();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//кнопка сохранить в попапе редактирования аватара                  
+changeAvatarForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    const submitBtn = changeAvatarForm.querySelector('.popup__submit-button');
+    submitBtn.textContent = 'Сохранение...';
+    const newUrl = insertedAvatar.value;
+
+    const mod = {
+        newUrl: `${newUrl}`,//отдали эти переменные
+        contentType: 'application/json',
+    }
+    changeAvatarOnServer(mod)
+        .then(() => {
+            getUserInfo() //вставили новые данные из сервера
+                .then((res) => {
+                    // console.log(res);
+                    profileAvatar.src = res.avatar;
+                    closePopup(changeAvatarPopup);
+                    submitBtn.textContent = 'Сохранить';
+                    insertedAvatar.value = '';
+                })
+        });
+})
+
+//кнопка добавить новую карточку в попаде добавления нов карточки 
+//отменили обновление страницы для всех сабмитов и очистили поля после использования                  
+addCardForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    const submitBtn = addCardForm.querySelector('.popup__submit-button');
+    submitBtn.textContent = 'Сохранение...';
+    const cardName = nameOfImgText.value;
+    const imageUrl = urlOfCardText.value;
+    //тут нужно послать данные на сервер
+    const mod = {
+        name: `${cardName}`,    //отдали эти переменные
+        link: `${imageUrl}`,
+        contentType: 'application/json',  // тут нужно что-то другое
+    }
+    postCardToServer(mod)//обновили данные сервера на переменные выше
+        .then(() => {
+            getCards()
+                .then((cards) => {
+                    const newCardFromServer = cards[0];
+                    addCard(newCardFromServer.name, newCardFromServer.link, newCardFromServer.likes, newCardFromServer.owner.name, newCardFromServer._id)
+
+                })
+            closePopup(addPhotoPopup);
+            submitBtn.textContent = 'Сохранить';
+        })
+
+
+    evt.target.reset();
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //функция открыть любой попап
@@ -112,13 +254,6 @@ popups.forEach((thisPopup) => {
 
 
 
-//кнопка сохранить в попапе редактирования профиля 
-//отменили обновление страницы для всех сабмитов и очистили поля после использования                  
-editProfileForm.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    transferTextFromPopup();
-    evt.target.reset();
-});
 
 
 
@@ -126,63 +261,6 @@ editProfileForm.addEventListener('submit', function (evt) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//кнопка добавить новую карточку в попаде добавления нов карточки 
-//отменили обновление страницы для всех сабмитов и очистили поля после использования                  
-addCardForm.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    const cardName = nameOfImgText.value;
-    const imageUrl = urlOfCardText.value;
-    //тут нужно послать данные на сервер
-    const mod = {
-        name: `${cardName}`,    //отдали эти переменные
-        link: `${imageUrl}`,
-        contentType: 'application/json',  // тут нужно что-то другое
-    }
-    postCardToServer(mod)//обновили данные сервера на переменные выше
-        .then(() => {
-            getCards()
-                .then((cards) => {
-                    const newCardFromServer = cards[0];
-                    addCard(newCardFromServer.name, newCardFromServer.link, newCardFromServer.likes, newCardFromServer.owner.name, newCardFromServer._id)
-               
-                })
-        })
-
-    closePopup(addPhotoPopup);
-    evt.target.reset();
-
-});
 
 
 
@@ -197,6 +275,10 @@ addCardButton.addEventListener('click', function () {
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup), transferTextFromHeader();
+});
+//кнопка редактировать аватар
+changeAvatarButton.addEventListener('click', function () {
+    openPopup(changeAvatarPopup);
 });
 
 

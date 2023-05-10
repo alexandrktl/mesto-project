@@ -1,0 +1,13 @@
+.profile__pencil{
+    position: absolute;
+    display: none;
+    top: 47px;
+    left: 47px;
+    
+}
+.profile__pencil:hover{
+    display: flex;
+    
+
+}
+
