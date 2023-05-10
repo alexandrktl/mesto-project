@@ -212,7 +212,6 @@ function openPopup(whatToOpen) {
 
     }
     
-=======
     if (Array.from(whatToOpen.classList).includes('popup_type-big-image')) {  // если модалка большой каритнки- не очищай поля
         return;
     }
@@ -221,7 +220,7 @@ function openPopup(whatToOpen) {
     const errorSpan = whatToOpen.querySelector('.popup__input-error');//собака зарыта
     errorSpan.textContent = '';
     errorSpan.classList.remove('popup__input-error_active')
->>>>>>> server-work
+
 
 
 //кнопка закрыть любой попап
@@ -254,7 +253,7 @@ popups.forEach((thisPopup) => {
             closePopup(thisPopup);
         }
     });
-
+});
 
 
 
