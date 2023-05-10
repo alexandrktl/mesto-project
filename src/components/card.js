@@ -12,14 +12,16 @@ const bigImgText = document.querySelector('.popup_text-big-image');
 import { openPopup } from "./modal";
 
 
-// тут создаете карточку и возвращаете ее
+
+// тут создаем карточку и возвращаете ее
 function insertCard(card) {
     cardsGrid.prepend(card); //вставили карточкy в начало
     return card;
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup) {
+function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
+
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
     card.querySelector('.place-card__desctiption-text').textContent = nameFromPopup;// тут меняем текст у картинки
@@ -71,11 +73,19 @@ function addCard(nameFromPopup, urlFromPopup) {
         bigImgText.textContent = card.querySelector('.place-card__desctiption-text').textContent;//нашли текст у попапа и заменили его на текст из карточки
         mainImg.alt = `${bigImgText.textContent}-big-photo`
     });
+
+
+    //сделаем проверку-если овнер=имя аккаунта, то класс мусорки-актив
+    if (owner == profileName.textContent) {
+        rubishIcon.classList.add('place-card__trash-button_active');
+    };
+
     insertCard(card);
 
-    
 }
+
 export { addCard };
+
 
 
 
