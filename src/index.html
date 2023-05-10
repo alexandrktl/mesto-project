@@ -17,10 +17,12 @@
         </header>
         <main class="main">
             <section class="profile">
-                <img alt="your-avatar-image" class="profile__avatar" src="<%=require('./images/avatar.jpg')%>">
+                <img alt="your-avatar-image" class="profile__avatar" >      <!--src="<%=require('./images/avatar.jpg')%>" -->
+                <span class="profile__pencil"><img src="<%=require('./images/pencil.svg')%>"></span>
+                
                 <div class="profile__info">
-                    <h1 class="profile__name-text">Стиг</h1>
-                    <p class="profile__description-text">Коллекционер автомобилей</p>
+                    <h1 class="profile__name-text"></h1>
+                    <p class="profile__description-text"></p>
                     <button aria-label="Изменить" type="button" class="profile__edit-button"></button>
                 </div>
                 <button aria-label="Добавить карточку" type="button" class="profile__add-card-button"></button>
@@ -43,7 +45,7 @@
                 <h2 class="popup__container-title-text">Редактировать профиль</h2>
                 <form name="popup__profile-form" class="popup__profile-form" id="editProfileForm" novalidate>
                     <input type="text" id="person-name-text-input" name="person-name" placeholder="Введите имя" required
-                        class=" popup__input popup__input_text_person-name" <!-- minlength="2" maxlength="40">
+                        class=" popup__input popup__input_text_person-name"  minlength="2" maxlength="40">
                     <span id="person-name-text-input-error" class="popup__input-error text-input-error"></span>
                     <input type="text" id="description-of-person-text-input" name="description-of-person" required
                         minlength="2" maxlength="200" placeholder="Введите описание"
@@ -83,7 +85,18 @@
         </div>
     </div>
 
-
+    <div class="popup popup_type-change-avatar "> <!--popup_opened  -->
+        <div class="popup__container">
+            <button aria-label="Закрыть" type="button" class="popup__close-button"></button>
+            <h2 class="popup__container-title-text">Обновить аватар</h2>
+            <form name="popup__profile-form" class="popup__profile-form" id="changeAvatarForm" novalidate>
+                <input type="url" id="new-avatar-url-text-input" name="popup__input_text_new-avatar-url" placeholder="Введите адрес новой картинки" required
+                    class=" popup__input popup__input_text_new-avatar-url">
+                 <span id="new-avatar-url-text-input-error" class="popup__input-error text-input-error"></span>
+                <button aria-label="Сохранить" type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
 
 
 
@@ -93,7 +106,10 @@
             <button aria-label="trash-button " type="button" class="place-card__trash-button"></button>
             <div class="place-card__description">
                 <h2 class="place-card__desctiption-text"></h2>
+                <div class="place-card__like-set">
                 <button aria-label="Like-button " type="button" class="place-card__like-button"></button>
+                <span id="likes-number" class="place-card__like-number"></span>
+                </div>
             </div>
         </article>
     </template>
