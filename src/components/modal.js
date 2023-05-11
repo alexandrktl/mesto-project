@@ -197,11 +197,14 @@ popups.forEach((thisPopup) => {
     });
 });
 
-avoPencil.addEventListener('click',()=>{
+avoPencil.addEventListener('click', () => {
     openPopup(changeAvatarPopup);
 })
-avoPencil.addEventListener('mouseover',()=>{
- profileAvatar.classList.add('profile__avatar_dark');
+avoPencil.addEventListener('mouseover', () => {
+    profileAvatar.classList.add('profile__avatar_dark');
+})
+avoPencil.addEventListener('mouseout', () => {
+    profileAvatar.classList.remove('profile__avatar_dark');
 })
 
 
