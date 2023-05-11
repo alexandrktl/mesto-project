@@ -23,6 +23,7 @@ const insertedDescription = document.querySelector('.popup__input_text_descripti
 const profileName = document.querySelector('.profile__name-text');//текст-имени в профиле
 const profileDescriptionText = document.querySelector('.profile__description-text');//текст-описаание в профиле
 const profileAvatar = document.querySelector('.profile__avatar');//аватарка профиля
+const avoPencil = document.querySelector('.profile__pencil');
 
 
 //функция перенос текста из профиля в попап 
@@ -87,29 +88,6 @@ editProfileForm.addEventListener('submit', function (evt) {
 
     evt.target.reset();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //кнопка сохранить в попапе редактирования аватара                  
@@ -219,8 +197,12 @@ popups.forEach((thisPopup) => {
     });
 });
 
-
-
+avoPencil.addEventListener('click',()=>{
+    openPopup(changeAvatarPopup);
+})
+avoPencil.addEventListener('mouseover',()=>{
+ profileAvatar.classList.add('profile__avatar_dark');
+})
 
 
 

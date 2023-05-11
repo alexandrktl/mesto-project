@@ -7,7 +7,7 @@
 }
 .profile__pencil:hover{
     display: flex;
-    
+    cursor: pointer;
 
 }
 

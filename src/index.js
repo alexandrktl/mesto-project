@@ -47,15 +47,15 @@ const setting = {
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
 }
-function getFreshCardsFromServer(){
+function getFreshCardsFromServer() {
     getCards()
-    .then((cards) => {
-       // console.log(cards)
-        cards.reverse().forEach(card => {
-            //console.log(card._id)
-            addCard(card.name, card.link, card.likes,card.owner.name,card._id)
-        });
-    })
+        .then((cards) => {
+            // console.log(cards)
+            cards.reverse().forEach(card => {
+                //console.log(card._id)
+                addCard(card.name, card.link, card.likes, card.owner.name, card._id)
+            });
+        })
 }
 
 
@@ -73,7 +73,7 @@ enableValidation(setting);
 
 
 
-export{getFreshCardsFromServer}
+export { getFreshCardsFromServer }
 
 
 
