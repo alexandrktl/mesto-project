@@ -46,15 +46,17 @@ const setting = {
     submitButtonSelector: '.popup__submit-button',
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
+    errorText:'оба поля могут содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы'
 }
 function getFreshCardsFromServer() {
-    getCards()
-        .then((cards) => {
+    Promise.all([ getCards()])
+        .then(([cards]) => {
             // console.log(cards)
             cards.reverse().forEach(card => {
-                //console.log(card._id)
                 addCard(card.name, card.link, card.likes, card.owner.name, card._id)
             });
+        }).catch((reject) => {
+            console.error(`failed fetch. Code error:${reject}`)
         })
 }
 

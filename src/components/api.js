@@ -27,9 +27,7 @@ function mainFetch(path, methodToDo, bodyPart, contType) {
             return Promise.reject(res.status);
         }
     })
-        .catch((reject) => {
-            console.error(`failed fetch. Code error:${reject}`)
-        })
+        
 }
 
 
@@ -100,6 +98,9 @@ function getCards() {
 
 function getUserInfo() {
     return mainFetch("users/me", "GET")
+    .catch((reject) => {
+        console.error(`failed fetch. Code error:${reject}`)
+    })
     
 };
 function getLikesCount() {

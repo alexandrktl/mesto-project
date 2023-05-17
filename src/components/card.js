@@ -42,14 +42,20 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
         //возможно ошибка с цифрами лайков
         if (!evt.target.classList.contains('place-card__like-button_active')) {
-            putLike(id);
-            evt.target.classList.add('place-card__like-button_active');
-            card.querySelector('.place-card__like-number').textContent = likesCount + 1;
-        }else{
-           // console.log('likes');
-           removeLike(id);
+            putLike(id)
+                .then(() => {
+                    evt.target.classList.add('place-card__like-button_active');
+                    card.querySelector('.place-card__like-number').textContent = likesCount + 1;
+                })
+                .catch((reject) => {
+                    console.error(`failed fetch. Code error:${reject}`)
+                });
+
+        } else {
+            // console.log('likes');
+            removeLike(id);
             evt.target.classList.remove('place-card__like-button_active');
-            card.querySelector('.place-card__like-number').textContent = likesCount ;
+            card.querySelector('.place-card__like-number').textContent = likesCount;
         }
     });
 
@@ -61,8 +67,13 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
     rubishIcon.addEventListener('click', function (evt) {
         const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
         const parentElement = eventTarget.closest('.place-card') // находим ближайший элемент
-        deletCardFrServ(parentElement.id);          //удаляем родителя с сервера
-        parentElement.remove();                         //удаляем родителя из разметки
+        deletCardFrServ(parentElement.id)
+        .then(()=>{
+            parentElement.remove();                         //удаляем родителя из разметки
+        })          //удаляем родителя с сервера
+        .catch((reject) => {
+            console.error(`failed fetch. Code error:${reject}`)
+        })
     });
 
     //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
