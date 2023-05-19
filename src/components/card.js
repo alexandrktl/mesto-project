@@ -20,7 +20,7 @@ function insertCard(card) {
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
+function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
 
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
@@ -35,7 +35,11 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
     //количество лайков у карточки
     card.querySelector('.place-card__like-number').textContent = likesCount;
 
-
+    //сделаем проверку-если овнер=имя аккаунта, то класс мусорки-актив
+    if (owner_id == "368cab84761b6601c73a3e4b") { //не знаю от куда взять id каждого пользлъователя
+        
+        rubishIcon.classList.add('place-card__trash-button_active');
+    };
 
 
     //кнопка лайк у карточки
@@ -53,9 +57,14 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
 
         } else {
             // console.log('likes');
-            removeLike(id);
-            evt.target.classList.remove('place-card__like-button_active');
-            card.querySelector('.place-card__like-number').textContent = likesCount;
+            removeLike(id)
+                .then((res) => {
+                    evt.target.classList.remove('place-card__like-button_active');
+                    card.querySelector('.place-card__like-number').textContent = res.likes.length;
+                })
+                .catch((reject) => {
+                    console.error(`failed fetch. Code error:${reject}`)
+                });
         }
     });
 
@@ -68,12 +77,12 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
         const eventTarget = evt.target;                 //опредилили где именно мы нажали на кнопку мусорки
         const parentElement = eventTarget.closest('.place-card') // находим ближайший элемент
         deletCardFrServ(parentElement.id)
-        .then(()=>{
-            parentElement.remove();                         //удаляем родителя из разметки
-        })          //удаляем родителя с сервера
-        .catch((reject) => {
-            console.error(`failed fetch. Code error:${reject}`)
-        })
+            .then(() => {
+                parentElement.remove();                         //удаляем родителя из разметки
+            })          //удаляем родителя с сервера
+            .catch((reject) => {
+                console.error(`failed fetch. Code error:${reject}`)
+            })
     });
 
     //нажатие на картинку-открытие попапа БОЛЬШОЙ картинки
@@ -86,10 +95,7 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner, id) {
     });
 
 
-    //сделаем проверку-если овнер=имя аккаунта, то класс мусорки-актив
-    if (owner == profileName.textContent) {
-        rubishIcon.classList.add('place-card__trash-button_active');
-    };
+
 
     insertCard(card);
 

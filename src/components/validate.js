@@ -33,9 +33,10 @@ const hideError = (formElement, input,setting) => {
 }
 //проверки и кастомные сообщения
 const checkInputValidity = (formElement, inputElement,setting) => {
+    inputElement.dataset.inputError='оба поля могут содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы';
     const regex = /[^а-яa-z\_\-\s\ё]/gi;
     if (regex.test(inputElement.value) && inputElement.type !== 'url') {//если попадает под регулярку и не является ссылкой
-        inputElement.setCustomValidity(setting.errorText);
+        inputElement.setCustomValidity(inputElement.dataset.inputError);
         showError(formElement, inputElement, inputElement.validationMessage,setting);
     } else if (inputElement.validity.valid === false) {
         inputElement.setCustomValidity('');

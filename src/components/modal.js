@@ -69,14 +69,14 @@ function transferTextFromPopup(submitBtn) {
         .then((res) => {
             profileName.textContent = res.name;
             profileDescriptionText.textContent = res.about;
+            closePopup(editProfilePopup);
         })
         .catch((reject) => {
             console.error(`failed fetch. Code error:${reject}`)
         })
-    submitBtn.textContent = 'Сохранить';
-    closePopup(editProfilePopup);
-
-
+        .finally(() => {
+            submitBtn.textContent = 'Сохранить';
+        })
 }
 
 
@@ -88,7 +88,7 @@ editProfileForm.addEventListener('submit', function (evt) {
     const submitBtn = editProfileForm.querySelector('.popup__submit-button');
     transferTextFromPopup(submitBtn);
 
-    evt.target.reset();
+    
 });
 
 
@@ -133,7 +133,7 @@ addCardForm.addEventListener('submit', function (evt) {
     }
     postCardToServer(mod)//отправили новую карточку на сервер
         .then((res) => {
-            addCard(cardName, imageUrl, res.likes, res.owner.name, res._id)
+            addCard(cardName, imageUrl, res.likes, res.owner._id, res._id)
         })
         .catch((reject) => {
             console.error(`failed fetch. Code error:${reject}`)
@@ -153,7 +153,7 @@ addCardForm.addEventListener('submit', function (evt) {
 //функция открыть любой попап
 function openPopup(whatToOpen) {
     whatToOpen.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEscape); 
+    document.addEventListener('keydown', closeByEscape);
 }
 
 
@@ -210,30 +210,20 @@ avoPencil.addEventListener('mouseout', () => {
 //кнопка открыть попап добавления картинки
 addCardButton.addEventListener('click', function () {
     openPopup(addPhotoPopup);
-    const submitButton = addPhotoPopup.querySelector('.popup__submit-button');//собака зарыта
-    submitButton.classList.add('popup__submit-button_inactive');
-    const errorSpan = addPhotoPopup.querySelector('.popup__input-error');//собака зарыта
-    errorSpan.textContent = '';
-    errorSpan.classList.remove('popup__input-error_active')
     //тут нужно деактивировать кнопку
     cleanAll(addPhotoPopup);
 });
 //кнопка редактировать профиль 
 profileEditButton.addEventListener('click', function () {
     openPopup(editProfilePopup);
-    const submitButton = editProfilePopup.querySelector('.popup__submit-button');//собака зарыта
-    submitButton.classList.add('popup__submit-button_inactive');
-    const errorSpan = editProfilePopup.querySelector('.popup__input-error');//собака зарыта
-    errorSpan.textContent = '';
-    errorSpan.classList.remove('popup__input-error_active')
-     transferTextFromHeader();
+    transferTextFromHeader();
     //тут нужно деактивировать кнопку
     cleanAll(editProfilePopup);
 });
 //кнопка редактировать аватар
 changeAvatarButton.addEventListener('click', function () {
     openPopup(changeAvatarPopup);
-     const submitButton = changeAvatarPopup.querySelector('.popup__submit-button');//собака зарыта
+    const submitButton = changeAvatarPopup.querySelector('.popup__submit-button');//собака зарыта
     submitButton.classList.add('popup__submit-button_inactive');
     const errorSpan = changeAvatarPopup.querySelector('.popup__input-error');//собака зарыта
     errorSpan.textContent = '';

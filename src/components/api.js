@@ -22,7 +22,9 @@ function mainFetch(path, methodToDo, bodyPart, contType) {
 
     }).then((res) => {
         if (res.ok) {
+            //console.log(res)
             return res.json(); // возвращаем вызов метода json
+            
         } else {
             return Promise.reject(res.status);
         }
