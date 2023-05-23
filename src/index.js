@@ -12,34 +12,20 @@ const setting = {
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
 }
-function getFreshCardsFromServer() {
-    Promise.all([ getCards()])
-        .then(([cards]) => {
-             //console.log(cards)
-            cards.reverse().forEach(card => {
-                addCard(card.name, card.link, card.likes, card.owner._id, card._id)
-            });
-        }).catch((reject) => {
-            console.error(`failed fetch. Code error:${reject}`)
-        })
-}
+
+Promise.all([getCards(), getNameFromServer(), enableValidation(setting)])
+    .then(([cards]) => {
+        cards.reverse().forEach(card => {
+            addCard(card.name, card.link, card.likes, card.owner._id, card._id)
+        });
+    }).catch((reject) => {
+        console.error(`failed fetch. Code error:${reject}`)
+    })
 
 
 
 
 
-getNameFromServer();
-getFreshCardsFromServer();
-//вызвали проверку валидации
-enableValidation(setting);
-
-
-
-
-
-
-
-export { getFreshCardsFromServer }
 
 
 

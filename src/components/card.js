@@ -32,18 +32,13 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
     const likesCount = likes.length;
     //console.log(likes);
 
-    
+
     card.querySelector('.place-card__like-number').textContent = likesCount;
-    getUserInfo()
-        .then((res) => {
-            if (owner_id == res._id) {
-                rubishIcon.classList.add('place-card__trash-button_active');
-            };
-        })
+
 
     //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
-        //возможно ошибка с цифрами лайков
+
         if (!evt.target.classList.contains('place-card__like-button_active')) {
             putLike(id)
                 .then(() => {
@@ -95,8 +90,17 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
 
 
 
+    getUserInfo()
+        .then((res) => {
+            if (owner_id == res._id) {
+                rubishIcon.classList.add('place-card__trash-button_active');
+            };
+            insertCard(card);
+        })
+        .catch((reject) => {
+            console.error(`failed fetch. Code error:${reject}`)
+        })
 
-    insertCard(card);
 
 }
 
