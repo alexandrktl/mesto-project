@@ -1,5 +1,5 @@
 import { profileName } from "./modal";
-import { deletCardFrServ, putLike, removeLike } from "./api";
+import { deletCardFrServ, putLike, removeLike, getUserInfo } from "./api";
 
 
 //функционал только создание одной карточки!
@@ -32,15 +32,14 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
     const likesCount = likes.length;
     //console.log(likes);
 
-    //количество лайков у карточки
+    
     card.querySelector('.place-card__like-number').textContent = likesCount;
-
-    //сделаем проверку-если овнер=имя аккаунта, то класс мусорки-актив
-    if (owner_id == "368cab84761b6601c73a3e4b") { //не знаю от куда взять id каждого пользлъователя
-        
-        rubishIcon.classList.add('place-card__trash-button_active');
-    };
-
+    getUserInfo()
+        .then((res) => {
+            if (owner_id == res._id) {
+                rubishIcon.classList.add('place-card__trash-button_active');
+            };
+        })
 
     //кнопка лайк у карточки
     card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {

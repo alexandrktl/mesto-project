@@ -42,7 +42,7 @@ function closePopup(anyPopup) {
 
 //функция перенос имени и описания с сервева
 function getNameFromServer() {
-    getUserInfo() //вставили новые данные из сервера
+    getUserInfo() 
         .then((res) => {
             //console.log(res);
             profileName.textContent = res.name;
@@ -108,11 +108,13 @@ changeAvatarForm.addEventListener('submit', function (evt) {
             // console.log(res);
             profileAvatar.src = res.avatar;
             closePopup(changeAvatarPopup);
-            submitBtn.textContent = 'Сохранить';
             insertedAvatar.value = '';
         })
         .catch((reject) => {
             console.error(`failed fetch. Code error:${reject}`)
+        })
+        .finally(()=>{
+            submitBtn.textContent = 'Сохранить';
         })
 
 })
