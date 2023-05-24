@@ -20,7 +20,7 @@ function insertCard(card) {
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
+function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id , ownerId) {
 
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
@@ -89,17 +89,15 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id) {
     });
 
 
+//дать res = null || что-то, и если он не равен ничего, то проведи проверкуниже на состояние мусорки, иначе она активна
 
-    getUserInfo()
-        .then((res) => {
-            if (owner_id == res._id) {
-                rubishIcon.classList.add('place-card__trash-button_active');
-            };
-            insertCard(card);
-        })
-        .catch((reject) => {
-            console.error(`failed fetch. Code error:${reject}`)
-        })
+
+
+    if (owner_id == ownerId) {
+        rubishIcon.classList.add('place-card__trash-button_active');
+    };
+    insertCard(card);
+
 
 
 }

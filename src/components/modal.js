@@ -1,6 +1,6 @@
 //все что есть в модальных окнах-попапах
 import { addCard } from "./card"; import { getUserInfo, refreshUserInfo, postCardToServer, getCards, changeAvatarOnServer } from "./api";
-
+import { ownerId } from "..";
 
 
 
@@ -41,17 +41,10 @@ function closePopup(anyPopup) {
 }
 
 //функция перенос имени и описания с сервева
-function getNameFromServer() {
-    getUserInfo() 
-        .then((res) => {
-            //console.log(res);
-            profileName.textContent = res.name;
-            profileDescriptionText.textContent = res.about;
-            profileAvatar.src = res.avatar;
-        })
-        .catch((reject) => {
-            console.error(`failed fetch. Code error:${reject}`)
-        });
+function getNameFromServer(res) {
+    profileName.textContent = res.name;
+    profileDescriptionText.textContent = res.about;
+    profileAvatar.src = res.avatar;
 }
 
 //функция перенос текста из попапа в профиль
@@ -88,7 +81,7 @@ editProfileForm.addEventListener('submit', function (evt) {
     const submitBtn = editProfileForm.querySelector('.popup__submit-button');
     transferTextFromPopup(submitBtn);
 
-    
+
 });
 
 
@@ -113,7 +106,7 @@ changeAvatarForm.addEventListener('submit', function (evt) {
         .catch((reject) => {
             console.error(`failed fetch. Code error:${reject}`)
         })
-        .finally(()=>{
+        .finally(() => {
             submitBtn.textContent = 'Сохранить';
         })
 
@@ -135,7 +128,8 @@ addCardForm.addEventListener('submit', function (evt) {
     }
     postCardToServer(mod)//отправили новую карточку на сервер
         .then((res) => {
-            addCard(cardName, imageUrl, res.likes, res.owner._id, res._id)
+            addCard(cardName, imageUrl, res.likes, res.owner._id, res._id,ownerId)
+            
         })
         .catch((reject) => {
             console.error(`failed fetch. Code error:${reject}`)

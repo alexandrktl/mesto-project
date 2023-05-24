@@ -1,7 +1,7 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
 import { addCard } from './components/card';
 import { enableValidation } from './components/validate';
-import { getCards } from './components/api';
+import { getCards, getUserInfo } from './components/api';
 import { getNameFromServer } from './components/modal';
 
 const setting = {
@@ -12,11 +12,14 @@ const setting = {
     errorClass: 'popup__input-error_active',
     inactiveButtonClass: 'popup__submit-button_inactive',
 }
-
-Promise.all([getCards(), getNameFromServer(), enableValidation(setting)])
-    .then(([cards]) => {
+let ownerId=0;
+Promise.all([getCards(), getUserInfo()])
+    .then(([cards, res]) => {
         cards.reverse().forEach(card => {
-            addCard(card.name, card.link, card.likes, card.owner._id, card._id)
+            getNameFromServer(res);
+             ownerId = res._id;
+            addCard(card.name, card.link, card.likes, card.owner._id, card._id, ownerId);
+            return ownerId;
         });
     }).catch((reject) => {
         console.error(`failed fetch. Code error:${reject}`)
@@ -26,7 +29,9 @@ Promise.all([getCards(), getNameFromServer(), enableValidation(setting)])
 
 
 
+enableValidation(setting);
 
 
+export{ownerId}
 
 
