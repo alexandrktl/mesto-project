@@ -26,7 +26,7 @@ Promise.all([getCards(), getUserInfo()])
     })
 
 
-
+   
 
 
 enableValidation(setting);

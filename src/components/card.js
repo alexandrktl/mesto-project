@@ -20,7 +20,7 @@ function insertCard(card) {
 }
 
 //функция добавления карточки
-function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id , ownerId) {
+function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id, ownerId) {
 
     const cardTemplate = document.querySelector('#card-template').content; // получаем контент из заготовки  в DOM
     const card = cardTemplate.querySelector('.place-card').cloneNode(true);  // клонируем содержимое дива из заготовки,
@@ -30,31 +30,34 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id , ownerId) {
     const rubishIcon = card.querySelector('.place-card__trash-button');
     card.id = id;
     const likesCount = likes.length;
+    const likeBtn = card.querySelector('.place-card__like-button');
+    const likeCount = card.querySelector('.place-card__like-number');
     //console.log(likes);
-
-
-    card.querySelector('.place-card__like-number').textContent = likesCount;
-
+    likeCount.textContent = likesCount;
+    likes.forEach(element => {
+        if (element._id === ownerId) {
+            likeBtn.classList.add('place-card__like-button_active');
+        }
+    });
 
     //кнопка лайк у карточки
-    card.querySelector('.place-card__like-button').addEventListener('click', function (evt) {
+    likeBtn.addEventListener('click', function (evt) {
 
         if (!evt.target.classList.contains('place-card__like-button_active')) {
             putLike(id)
                 .then(() => {
                     evt.target.classList.add('place-card__like-button_active');
-                    card.querySelector('.place-card__like-number').textContent = likesCount + 1;
+                    likeCount.textContent = likesCount + 1;
                 })
                 .catch((reject) => {
                     console.error(`failed fetch. Code error:${reject}`)
                 });
 
         } else {
-            // console.log('likes');
             removeLike(id)
-                .then((res) => {
+                .then(() => {
                     evt.target.classList.remove('place-card__like-button_active');
-                    card.querySelector('.place-card__like-number').textContent = res.likes.length;
+                    likeCount.textContent = likeCount.textContent - 1;
                 })
                 .catch((reject) => {
                     console.error(`failed fetch. Code error:${reject}`)
@@ -89,7 +92,7 @@ function addCard(nameFromPopup, urlFromPopup, likes, owner_id, id , ownerId) {
     });
 
 
-//дать res = null || что-то, и если он не равен ничего, то проведи проверкуниже на состояние мусорки, иначе она активна
+    //дать res = null || что-то, и если он не равен ничего, то проведи проверкуниже на состояние мусорки, иначе она активна
 
 
 
